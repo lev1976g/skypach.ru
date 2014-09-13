@@ -1,0 +1,3 @@
+<div class="info_center">[owner]<br><br><img src="http://vk.com/images/join/photo_uploaded_f.gif"><br><br>У Вас нет ни одного альбома.[/owner][not-owner]<br><br><br>Пока нет ни одного фотоальбома.<br><br><br><br>[/not-owner]</div>
+[owner]<br><div class="button_div fl_l" style="margin-left:245px;margin-top:10px;"><button onClick="Albums.CreatAlbum(); return false;">Создать альбом</button></div><br>[/owner]
+<div class="clear"></div>

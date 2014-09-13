@@ -1,0 +1,137 @@
+﻿<link href="http://www.myhappygames.com/src/main.css" rel="stylesheet" type="text/css">
+
+<script type="text/javascript">
+function gameComplete(){
+   document.getElementById('inner').style.display="block";
+   var preload = document.getElementById('overlay');
+   if(preload){
+	  preload.parentNode.removeChild(preload); 
+   }
+   if(0==1){
+	   zoomInGame();
+   }
+}
+var zoomed=0;
+var nnn=0;
+function zoomInGame(){
+	if(document.getElementById('inner').style.display=="none"){
+		alert("plz use it after game finished loading");
+		return;
+	}
+	if(nnn>7){
+		return;
+	}
+	if(zoomed==0){
+		zoomed=1;
+		zoominx();
+	}else{
+		zoomed=0;
+		resizex();
+	}
+	nnn++;
+}
+function zoominx(){
+ document.getElementById("raltives").style.display = "none";
+ document.getElementById("outter").style.width = "1030px";
+ document.getElementById("outter").style.height = "600px";
+ document.getElementById("shell").style.height = "600px";
+ var w = 1030;
+ var h = 600;
+ var vW=gameutil_vW;
+ var vH=gameutil_vH;
+ var width;
+ var height;
+ if(vW/vH > w / h) {
+   width = w;
+   height = w*vH / vW;
+ }else {
+   height = h;
+   width = h*vW / vH;
+ }
+ var x = (w - width) / 2;
+ var y = (h - height) / 2;
+ document.getElementById("inner").style.marginLeft = x+"px";
+ document.getElementById("inner").style.marginTop =y+"px";
+ document.getElementById("inner").style.width = width+"px";
+ document.getElementById("inner").style.height = height+"px";
+}
+function resizex(){
+ document.getElementById("raltives").style.display = "";
+ document.getElementById("outter").style.width = "648px";
+ document.getElementById("outter").style.height = "625px";
+ document.getElementById("shell").style.height = "535px";
+ var w = 648;
+ var h = 535;
+ var vW=gameutil_vW;
+ var vH=gameutil_vH;
+ var width;
+ var height;
+ if(vW/vH > w / h) {
+   width = w;
+   height = w*vH / vW;
+ }else {
+   height = h;
+   width = h*vW / vH;
+ }
+ var x = (w - width) / 2;
+ var y = (h - height) / 2;
+ document.getElementById("inner").style.marginLeft = x+"px";
+ document.getElementById("inner").style.marginTop =y+"px";
+ document.getElementById("inner").style.width = width+"px";
+ document.getElementById("inner").style.height = height+"px";
+}
+
+function copyEmbedCodes(){
+	$("#embed_code").select();
+	if(copyInfo($("#embed_code").val())){
+		alert("Codes was copied to your clipboard");
+	}else{
+		alert("Copy Failed, Please copy codes manually");
+	}
+}
+</script>
+
+
+
+<div id="layer" style="display:none;position:absolute;z-index:1;"></div>
+<div class="logo">
+
+<div id="outter" style="position:relative;margin-left:0px;width:648px;height:625px;background-color:#000;">
+<div id="shell" style=" width:640px;height:535px;">
+<div id= "inner" style="display:none; margin-left:0px; margin-top:2px; width:648px; height:531px;background-color:#000000;">
+<iframe frameborder="0" src="http://swf.myhappygames.com/files/games/m/cs/flash.html" width="640" height="100%" scrolling="no"></iframe>
+</div>
+</div>
+
+<div id="overlay">
+
+<div style="width:640px; height:180px; margin-top:0px;">
+    <object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" width="640" height="100%" id="gameloader" align="middle">
+    <param name="wmode" value="transparent" />
+    <param name="movie" value="http://www.myhappygames.com/src/my_loader.swf?multi=m&gameurl=http://swf.myhappygames.com/files/games/m/cs/game.unity3d" />
+    <embed src="http://www.myhappygames.com/src/my_loader.swf?multi=m&gameurl=http://swf.myhappygames.com/files/games/m/cs/game.unity3d" allowscriptaccess="always" wmode="transparent" width="100%" height="100%" align="middle" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" /></embed>
+    </object>
+</div>
+</div>
+<div style="width:648px;height:90px; background-color:#000">
+</div> 
+</div>
+<!-- game and ad728 end-->
+<script type="text/javascript">
+var MAX_INDEX=4; 
+function changeIndex(divId)   { 
+  var ddd=document.getElementById(divId);
+  if(ddd.style.zIndex<=MAX_INDEX){   
+	  ddd.style.zIndex=MAX_INDEX+1;   
+	  MAX_INDEX++;   
+  }
+  if(divId=="chat"){
+	  document.getElementById("tab_chat").style.borderBottomColor="#FFF";
+	  document.getElementById("tab_games").style.borderBottomColor="#EEE";
+  }else{
+	  document.getElementById("tab_chat").style.borderBottomColor="#EEE";
+	  document.getElementById("tab_games").style.borderBottomColor="#FFF";
+  }
+}
+</script>
+

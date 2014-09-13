@@ -1,4 +1,7 @@
 skypach.ru
 ==========
 
-Site skypach.ru based on vii engine v1.0 from http://vii.niceweb.in.ua/
+Site skypach.ru based on vii engine from http://vii.niceweb.in.ua/
+
+
+

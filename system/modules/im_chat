@@ -1,0 +1,200 @@
+<?php
+/* 
+	Appointment: &#1044;&#1080;&#1072;&#1083;&#1086;&#1075;&#1080;
+	File: im.php 
+ 
+*/
+if(!defined('MOZG'))
+	die('Hacking attempt!');
+
+if($ajax == 'yes')
+	NoAjaxQuery();
+
+if($logged){
+	$act = $_GET['act'];
+	$user_id = $user_info['user_id'];
+	switch($act){
+			//################### &#1054;&#1090;&#1087;&#1088;&#1072;&#1074;&#1082;&#1072; &#1089;&#1086;&#1086;&#1073;&#1097;&#1077;&#1085;&#1080;&#1103; ###################//
+		case "send":
+			NoAjaxQuery();
+			
+			$for_user_id = intval($_POST['for_user_id']);
+			$msg = ajax_utf8(textFilter($_POST['msg']));
+			$attach_files = ajax_utf8(textFilter($_POST['attach_files']));
+			$my_ava = ajax_utf8(textFilter($_POST['my_ava'], false, true));
+			$my_name = ajax_utf8(textFilter($_POST['my_name'], false, true));
+			$attach_files = ajax_utf8(textFilter($_POST['attach_files'], false, true));
+			
+			$attach_files = str_replace('vote|', 'hack|', $attach_files);
+			
+			if($user_id != $for_user_id AND $for_user_id AND isset($msg) AND !empty($msg) OR isset($attach_files) OR !empty($attach_files)){
+				
+				//&#1055;&#1088;&#1086;&#1074;&#1077;&#1088;&#1082;&#1072; &#1085;&#1072; &#1089;&#1091;&#1097;&#1077;&#1089;&#1090;&#1074;&#1086;&#1074;&#1072;&#1085;&#1080;&#1077; &#1087;&#1086;&#1083;&#1091;&#1095;&#1072;&#1090;&#1077;&#1083;&#1103;
+				$row = $db->super_query("SELECT user_privacy FROM `".PREFIX."_users` WHERE user_id = '".$for_user_id."'");
+
+				if($row){
+					//&#1055;&#1088;&#1080;&#1074;&#1072;&#1090;&#1085;&#1086;&#1089;&#1090;&#1100;
+					$user_privacy = xfieldsdataload($row['user_privacy']);
+					
+					//&#1063;&#1057;
+					$CheckBlackList = CheckBlackList($for_user_id);
+				
+					//&#1055;&#1088;&#1086;&#1074;&#1077;&#1088;&#1082;&#1072; &#1077;&#1089;&#1090;&#1100;&#1083;&#1080; &#1079;&#1072;&#1087;&#1088;&#1072;&#1096;&#1080;&#1074;&#1072;&#1077;&#1084;&#1099;&#1081; &#1102;&#1079;&#1077;&#1088; &#1074; &#1076;&#1088;&#1091;&#1079;&#1100;&#1103;&#1093; &#1091; &#1102;&#1079;&#1077;&#1088;&#1072; &#1082;&#1086;&#1090;&#1086;&#1088;&#1099;&#1081; &#1089;&#1084;&#1086;&#1090;&#1088;&#1080;&#1090; &#1089;&#1090;&#1088;
+					if($user_privacy['val_msg'] == 2)
+						$check_friend = CheckFriends($for_user_id);
+	
+					if(!$CheckBlackList AND $user_privacy['val_msg'] == 1 OR $user_privacy['val_msg'] == 2 AND $check_friend)
+						$xPrivasy = 1;
+					else
+						$xPrivasy = 0;
+				
+					if($xPrivasy){
+						
+						//&#1054;&#1090;&#1087;&#1088;&#1072;&#1074;&#1083;&#1103;&#1077;&#1084; &#1089;&#1086;&#1086;&#1073;&#1097;&#1077;&#1085;&#1080;&#1077; &#1087;&#1086;&#1083;&#1091;&#1095;&#1072;&#1090;&#1077;&#1083;&#1102;
+						$db->query("INSERT INTO `".PREFIX."_messages` SET theme = '...', text = '".$msg."', for_user_id = '".$for_user_id."', from_user_id = '".$user_id."', date = '".$server_time."', pm_read = 'no', folder = 'inbox', history_user_id = '".$user_id."', attach = '".$attach_files."'");
+
+						//&#1057;&#1086;&#1093;&#1088;&#1072;&#1085;&#1103;&#1077;&#1084; &#1089;&#1086;&#1086;&#1073;&#1097;&#1077;&#1085;&#1080;&#1077; &#1074; &#1087;&#1072;&#1087;&#1082;&#1091; &#1086;&#1090;&#1087;&#1088;&#1072;&#1074;&#1083;&#1077;&#1085;&#1085;&#1099;&#1077;
+						$db->query("INSERT INTO `".PREFIX."_messages` SET theme = '...', text = '".$msg."', for_user_id = '".$user_id."', from_user_id = '".$for_user_id."', date = '".$server_time."', pm_read = 'no', folder = 'outbox', history_user_id = '".$user_id."', attach = '".$attach_files."'");
+						$dbid = $db->insert_id();
+
+						//&#1054;&#1073;&#1085;&#1086;&#1074;&#1083;&#1103;&#1077;&#1084; &#1082;&#1086;&#1083;-&#1074;&#1086; &#1085;&#1086;&#1074;&#1099;&#1093; &#1089;&#1086;&#1086;&#1073;&#1097;&#1077;&#1085;&#1080;&#1103; &#1091; &#1087;&#1086;&#1083;&#1091;&#1095;&#1072;&#1090;&#1077;&#1083;&#1103;
+						$db->query("UPDATE `".PREFIX."_users` SET user_pm_num = user_pm_num+1 WHERE user_id = '".$for_user_id."'");
+						
+						//&#1055;&#1088;&#1086;&#1074;&#1077;&#1088;&#1082;&#1072; &#1085;&#1072; &#1085;&#1072;&#1083;&#1080;&#1095;&#1080;&#1080; &#1089;&#1086;&#1079;&#1076;&#1072;&#1085;&#1086;&#1075;&#1086; &#1076;&#1080;&#1072;&#1083;&#1086;&#1075;&#1072; &#1091; &#1089;&#1077;&#1073;&#1103;
+						$check_im = $db->super_query("SELECT iuser_id FROM `".PREFIX."_im` WHERE iuser_id = '".$user_id."' AND im_user_id = '".$for_user_id."'");
+						if(!$check_im)
+							$db->query("INSERT INTO ".PREFIX."_im SET iuser_id = '".$user_id."', im_user_id = '".$for_user_id."', idate = '".$server_time."', all_msg_num = 1");
+						else
+							$db->query("UPDATE ".PREFIX."_im  SET idate = '".$server_time."', all_msg_num = all_msg_num+1 WHERE iuser_id = '".$user_id."' AND im_user_id = '".$for_user_id."'");
+							
+						//&#1055;&#1088;&#1086;&#1074;&#1077;&#1088;&#1082;&#1072; &#1085;&#1072; &#1085;&#1072;&#1083;&#1080;&#1095;&#1080;&#1080; &#1089;&#1086;&#1079;&#1076;&#1072;&#1085;&#1086;&#1075;&#1086; &#1076;&#1080;&#1072;&#1083;&#1086;&#1075;&#1072; &#1091; &#1087;&#1086;&#1083;&#1091;&#1095;&#1072;&#1090;&#1077;&#1083;&#1103;, &#1072; &#1077;&#1089;&#1083;&#1080; &#1077;&#1089;&#1090;&#1100; &#1090;&#1086; &#1087;&#1088;&#1086;&#1089;&#1090;&#1086; &#1086;&#1073;&#1085;&#1086;&#1074;&#1083;&#1103;&#1077;&#1084; &#1082;&#1086;&#1083;-&#1074;&#1086; &#1085;&#1086;&#1074;&#1099;&#1093; &#1089;&#1086;&#1086;&#1073;&#1097;&#1077;&#1085;&#1080;&#1081; &#1074; &#1076;&#1080;&#1072;&#1083;&#1086;&#1075;&#1077;
+						$check_im_2 = $db->super_query("SELECT iuser_id FROM ".PREFIX."_im WHERE iuser_id = '".$for_user_id."' AND im_user_id = '".$user_id."'");
+						if(!$check_im_2)
+							$db->query("INSERT INTO ".PREFIX."_im SET iuser_id = '".$for_user_id."', im_user_id = '".$user_id."', msg_num = 1, idate = '".$server_time."', all_msg_num = 1");
+						else
+							$db->query("UPDATE ".PREFIX."_im  SET idate = '".$server_time."', msg_num = msg_num+1, all_msg_num = all_msg_num+1 WHERE iuser_id = '".$for_user_id."' AND im_user_id = '".$user_id."'");
+						
+						//&#1054;&#1090;&#1074;&#1077;&#1090; &#1089;&#1082;&#1088;&#1080;&#1087;&#1090;&#1072;
+						$tpl->load_template('im_chat/msg.tpl');
+						$tpl->set('{ava}', $my_ava);
+						$tpl->set('{name}', $my_name);
+						$tpl->set('{user-id}', $user_id);
+
+						//&#1055;&#1088;&#1080;&#1082;&#1088;&#1080;&#1087;&#1083;&#1077;&#1085;&#1085;&#1099;&#1077; &#1092;&#1072;&#1081;&#1083;&#1099;
+						if($attach_files){
+							$attach_arr = explode('||', $attach_files);
+							$cnt_attach = 1;
+							$jid = 0;
+							$attach_result = '';
+							foreach($attach_arr as $attach_file){
+								$attach_type = explode('|', $attach_file);
+								
+								//&#1060;&#1086;&#1090;&#1086;
+								if($attach_type[0] == 'photo_u'){
+									$attauthor_user_id = $user_id;
+
+									if($attach_type[1] == 'attach' AND file_exists(ROOT_DIR."/uploads/attach/{$attauthor_user_id}/c_{$attach_type[2]}")){
+									
+										$size = getimagesize(ROOT_DIR."/uploads/attach/{$attauthor_user_id}/c_{$attach_type[2]}");
+										
+										$attach_result .= "<img id=\"photo_wall_{$row['id']}_{$cnt_attach}\" src=\"/uploads/attach/{$attauthor_user_id}/c_{$attach_type[2]}\" {$size[3]} style=\"margin-top:3px;margin-right:3px\" align=\"left\" onClick=\"groups.wall_photo_view('{$row['id']}', '', '{$attach_type[1]}', '{$cnt_attach}')\" class=\"cursor_pointer page_num{$row['id']}\" />";
+											
+										$cnt_attach++;
+									} elseif(file_exists(ROOT_DIR."/uploads/users/{$attauthor_user_id}/albums/{$attach_type[2]}/c_{$attach_type[1]}")){
+									
+										$size = getimagesize(ROOT_DIR."/uploads/users/{$attauthor_user_id}/albums/{$attach_type[2]}/c_{$attach_type[1]}");
+										
+										$attach_result .= "<img id=\"photo_wall_{$row['id']}_{$cnt_attach}\" src=\"/uploads/users/{$attauthor_user_id}/albums/{$attach_type[2]}/c_{$attach_type[1]}\" {$size[3]} style=\"margin-top:3px;margin-right:3px\" align=\"left\" onClick=\"groups.wall_photo_view('{$row['id']}', '', '{$attach_type[1]}', '{$cnt_attach}')\" class=\"cursor_pointer page_num{$row['id']}\" />";
+											
+										$cnt_attach++;
+									}
+
+								//&#1042;&#1080;&#1076;&#1077;&#1086;
+								} elseif($attach_type[0] == 'video' AND file_exists(ROOT_DIR."/uploads/videos/{$attach_type[3]}/{$attach_type[1]}"))
+									$attach_result .= "<div><a href=\"/video{$attach_type[3]}_{$attach_type[2]}\" onClick=\"videos.show({$attach_type[2]}, this.href, location.href); return false\"><img src=\"/uploads/videos/{$attach_type[3]}/{$attach_type[1]}\" style=\"margin-top:3px;margin-right:3px\" align=\"left\" /></a></div>";
+									
+								//&#1052;&#1091;&#1079;&#1099;&#1082;&#1072;
+								elseif($attach_type[0] == 'audio'){
+									$audioId = intval($attach_type[1]);
+									$audioInfo = $db->super_query("SELECT artist, name, url FROM `".PREFIX."_audio` WHERE aid = '".$audioId."'");
+									if($audioInfo){
+										$jid++;
+										$attach_result .= '<div class="audioForSize'.$row['id'].' player_mini_mbar_wall_all2" id="audioForSize" style="width:440px"><div class="audio_onetrack audio_wall_onemus" style="width:440px"><div class="audio_playic cursor_pointer fl_l" onClick="music.newStartPlay(\''.$jid.'\', '.$row['id'].')" id="icPlay_'.$row['id'].$jid.'"></div><div id="music_'.$row['id'].$jid.'" data="'.$audioInfo['url'].'" class="fl_l" style="margin-top:-1px"><a href="/?go=search&type=5&query='.$audioInfo['artist'].'" onClick="Page.Go(this.href); return false"><b>'.stripslashes($audioInfo['artist']).'</b></a> &ndash; '.stripslashes($audioInfo['name']).'</div><div id="play_time'.$row['id'].$jid.'" class="color777 fl_r no_display" style="margin-top:2px;margin-right:5px">00:00</div><div class="player_mini_mbar fl_l no_display player_mini_mbar_wall player_mini_mbar_wall_all2" id="ppbarPro'.$row['id'].$jid.'" style="width:442px"></div></div></div>';
+									}
+
+								//&#1057;&#1084;&#1072;&#1081;&#1083;&#1080;&#1082;
+								} elseif($attach_type[0] == 'smile' AND file_exists(ROOT_DIR."/uploads/smiles/{$attach_type[1]}")){
+									$attach_result .= '<img src=\"/uploads/smiles/'.$attach_type[1].'\" style="margin-right:5px" />';
+									
+								//&#1045;&#1089;&#1083;&#1080; &#1076;&#1086;&#1082;&#1091;&#1084;&#1077;&#1085;&#1090;
+								} elseif($attach_type[0] == 'doc'){
+								
+									$doc_id = intval($attach_type[1]);
+									
+									$row_doc = $db->super_query("SELECT dname, dsize FROM `".PREFIX."_doc` WHERE did = '{$doc_id}'");
+									
+									if($row_doc){
+										
+										$attach_result .= '<div style="margin-top:5px;margin-bottom:5px" class="clear"><div class="doc_attach_ic fl_l" style="margin-top:4px;margin-left:0px"></div><div class="attach_link_block_te"><div class="fl_l">&#1060;&#1072;&#1081;&#1083; <a href="/index.php?go=doc&act=download&did='.$doc_id.'" target="_blank" onMouseOver="myhtml.title(\''.$doc_id.$cnt_attach.$dbid.'\', \'<b>&#1056;&#1072;&#1079;&#1084;&#1077;&#1088; &#1092;&#1072;&#1081;&#1083;&#1072;: '.$row_doc['dsize'].'</b>\', \'doc_\')" id="doc_'.$doc_id.$cnt_attach.$dbid.'">'.$row_doc['dname'].'</a></div></div></div><div class="clear"></div>';
+											
+										$cnt_attach++;
+									}
+									
+								} else
+								
+									$attach_result .= '';
+							}
+							if($attach_result)
+								$msg = '<div style="width:442px;overflow:hidden">'.preg_replace('`(http(?:s)?://\w+[^\s\[\]\<]+)`i', '<a href="/away.php?url=$1" target="_blank">$1</a>', $msg).$attach_result.'</div><div class="clear"></div>';
+						} else
+							$msg = preg_replace('`(http(?:s)?://\w+[^\s\[\]\<]+)`i', '<a href="/away.php?url=$1" target="_blank">$1</a>', $msg).$attach_result;
+					
+						$tpl->set('{text}', stripslashes($msg));
+						
+						$tpl->set('{msg-id}', $dbid);
+						$tpl->set('{new}', 'im_class_new');
+						$tpl->set('{date}', langdate('H:i:s', $server_time));
+						$tpl->compile('content');
+						//&#1042;&#1089;&#1090;&#1072;&#1074;&#1083;&#1103;&#1077;&#1084; &#1089;&#1086;&#1073;&#1099;&#1090;&#1080;&#1077; &#1074; &#1084;&#1086;&#1084;&#1077;&#1085;&#1090;&#1072;&#1083;&#1100;&#1085;&#1099;&#1077; &#1086;&#1087;&#1086;&#1074;&#1077;&#1097;&#1072;&#1085;&#1080;&#1103;
+      $row_owner = $db->super_query("SELECT user_last_visit FROM `".PREFIX."_users` WHERE user_id = '{$for_user_id}'");
+      $update_time = $server_time - 70;
+      
+      if($row_owner['user_last_visit'] >= $update_time){
+       
+       $action_update_text = "<br>{$msg}";
+       
+       $db->query("INSERT INTO `".PREFIX."_updates` SET for_user_id = '{$for_user_id}', from_user_id = '{$user_info['user_id']}', type = '8', date = '{$server_time}', text = '{$action_update_text}', user_photo = '{$user_info['user_photo']}', user_search_pref = '{$user_info['user_search_pref']}', lnk = '/messages'");
+ 
+       mozg_create_cache("user_{$for_user_id}/updates", 1);
+  
+       }
+						//&#1063;&#1080;&#1090;&#1080;&#1089;&#1084; &#1082;&#1077;&#1096; &#1086;&#1073;&#1085;&#1086;&#1074;&#1083;&#1077;&#1085;&#1080;&#1081;
+						mozg_clear_cache_file('user_'.$for_user_id.'/im');
+						mozg_create_cache('user_'.$for_user_id.'/im_update', '1');
+						mozg_create_cache("user_{$for_user_id}/typograf{$user_id}", "");
+						
+						AjaxTpl();
+					} else
+						echo 'err_privacy';
+				} else
+					echo 'no_user';
+			} else
+				echo 'max_strlen';
+				
+			die();
+		break;
+//################### &#1047;&#1072;&#1087;&#1091;&#1089;&#1082;&#1072;&#1077;&#1084; &#1076;&#1080;&#1086;&#1083;&#1086;&#1075;&#1086;&#1074;&#1086;&#1077; &#1086;&#1082;&#1085;&#1086; ###################//
+  case "opens":  
+   $tpl->load_template('im_chat/dialog.tpl');
+   $tpl->compile('content');
+  AjaxTpl();
+  die();
+  $tpl->clear();
+  $db->free();
+  break;
+
+	}
+	$tpl->clear();
+	$db->free();
+} 
+?>

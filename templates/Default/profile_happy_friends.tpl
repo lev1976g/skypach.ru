@@ -1,0 +1,1 @@
+<a href=\"/id{user-id}\" onClick=\"Page.Go(this.href); return false\">{user-name} {user-lastname}</a>
