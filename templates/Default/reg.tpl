@@ -3,7 +3,7 @@
 <div style="padding-left:20px;">
 <link type="text/css" rel="stylesheet" href="{theme}/style/index.css?19"></link>
 <link rel="stylesheet" type="text/css" href="{theme}/style/common.css?391" />
-<p><b>Скайпач</b> – универсальное средство для общения разных людей. А особенно с двача, скайпача и твиттерача.</p>
+<p><b>Скайпач</b> – универсальное средство для общения различных людей. А особенно с двача, скайп-конфочек и твиттерача.</p>
 
 <h2>Моментальная регистрация</h2>
 <div style="margin-left:60px;">
@@ -112,4 +112,5 @@
       <td><a class="ij_scr" onclick="JoinPhotoview.show(1)"><img src="{theme}/images/join/news_m.png" class="ijs_img" /></a></td>
       <td><a class="ij_scr" onclick="JoinPhotoview.show(2)"><img src="{theme}/images/join/photos_m.png" class="ijs_img" /></a></td>
     </tr></table>
+    <p align="center"><!-- Новости:<br/> <a href="/news.html">13.09.2014: Внимание, нас взломали!</a> --></p>
   </div>  </div>  </div></div>

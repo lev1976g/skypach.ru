@@ -39,7 +39,7 @@ if($logged){
 				if($privacy <= 0 OR $privacy > 3) $privacy = 1;
 
 				//Если youtube то добавляем префикс src=" и составляем ответ для скрипта, для вставки в БД
-				if(preg_match("/src=\"http:\/\/www.youtube.com|src=\"http:\/\/youtube.com/i", 'src="'.$good_video_lnk)){
+				if(preg_match("/src=\"https?:\/\/www.youtube.com|src=\"https?:\/\/youtube.com/i", 'src="'.$good_video_lnk)){
 					$good_video_lnk = str_replace(array('#', '!'), '', $good_video_lnk);
 					$exp_y = explode('v=', $good_video_lnk);
 					$exp_x = explode('&', $exp_y[1]);
@@ -126,18 +126,18 @@ if($logged){
 			die();
 		break;
 		
-		//################### Парсер . Загрузка данных о видео ###################//
+		//################### Парсер. Загрузка данных о видео. ###################//
 		case "load":
 			NoAjaxQuery();
 			
 			$video_lnk = $_POST['video_lnk'];
 			
-			if(preg_match("/http:\/\/www.youtube.com|http:\/\/youtube.com|http:\/\/rutube.ru|http:\/\/www.rutube.ru|http:\/\/www.vimeo.com|http:\/\/vimeo.com|http:\/\/smotri.com|http:\/\/www.smotri.com/i", $video_lnk)){
+			if(preg_match("/https?:\/\/www.youtube.com|https?:\/\/youtube.com|http:\/\/rutube.ru|http:\/\/www.rutube.ru|http:\/\/www.vimeo.com|http:\/\/vimeo.com|http:\/\/smotri.com|http:\/\/www.smotri.com/i", $video_lnk)){
 			
 				//Открываем ссылку
 				
 				//Если ссылка youtube, то формируем xml ссылку для получения данных
-				if(preg_match("/http:\/\/www.youtube.com|http:\/\/youtube.com/i", $video_lnk)){
+				if(preg_match("/https?:\/\/www.youtube.com|https?:\/\/youtube.com/i", $video_lnk)){
 					$exp_y = explode('v=', $video_lnk);
 					$exp_x = explode('&', $exp_y[1]);
 					$sock = fopen('http://www.youtube.com/oembed?url=http://www.youtube.com/watch?v='.$exp_x[0].'&format=xml', 'r');
@@ -148,12 +148,12 @@ if($logged){
 				}
 				
 				if(!$sock){
-					echo 'no_serviece';
+					echo 'no_service';
 				} else {
 					$html = '';
 					
-					//Если сервис youtube, rutube, smotri то просто выводи
-					if(preg_match("/http:\/\/www.youtube.com|http:\/\/youtube.com|http:\/\/rutube.ru|http:\/\/www.rutube.ru|http:\/\/smotri.com|http:\/\/www.smotri.com/i", $video_lnk)){
+					//Если сервис youtube, rutube, smotri то просто выводим
+					if(preg_match("/https?:\/\/www.youtube.com|https?:\/\/youtube.com|http:\/\/rutube.ru|http:\/\/www.rutube.ru|http:\/\/smotri.com|http:\/\/www.smotri.com/i", $video_lnk)){
 						while(!feof($sock)){
 							$html .= fgets($sock);
 						}
@@ -175,7 +175,7 @@ if($logged){
 					$data_all = ajax_utf8(str_replace(array('[', ']'), array('&iqu;', '&iqu2;'), $html));
 
 					//Если видеосервис youtube
-					if(preg_match("/http:\/\/www.youtube.com|http:\/\/youtube.com/i", $video_lnk)){
+					if(preg_match("/https?:\/\/www.youtube.com|https?:\/\/youtube.com/i", $video_lnk)){
 						preg_match_all('`(<title>[^\[]+\</title>)`si', $data_all, $parse);
 						$res_title = rn_replace(str_replace(array('<title>', '</title>'), '', $parse[1][0]));
 
@@ -231,10 +231,10 @@ if($logged){
 					if($result_img && $result_title)
 						echo "{$result_img}:|:{$result_title}:|:{$result_descr}";
 					else
-						echo 'no_serviece';
+						echo 'no_service';
 				}
 			} else
-				echo 'no_serviece';
+				echo 'no_service';
 			
 			die();
 		break;

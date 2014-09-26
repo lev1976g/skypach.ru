@@ -59,27 +59,19 @@ if($logged){
 
 		//Считываем сколько просмотров
         case "view":
-
-            $id = intval($_POST['id']);
+            $id = numFilter2($_POST['id']);
 
             if($id){
-
                 $db->query("UPDATE `".PREFIX."_ads` SET views=views-1 WHERE id='{$id}'");
-
             }
-
         break;
 
-		//Виводим обявление пользователя
+		//Выводим обявление пользователя
 		case "ads_view_my":
-
-		if($_GET['page'] > 0) $page = intval($_GET['page']); else $page = 1;
-
-		$gcount = 10;
-
-		$limit_page = ($page-1) * $gcount;
-
-		$db_ads = $db->super_query("SELECT id, settings, description, links, link, views, category FROM `".PREFIX."_ads` WHERE user_id = '{$user_id}' ORDER by rand() ASC LIMIT {$limit_page}, {$gcount}", 1);
+    		if($_GET['page'] > 0) $page = intval($_GET['page']); else $page = 1;
+    		$gcount = 10;
+    		$limit_page = ($page-1) * $gcount;
+    		$db_ads = $db->super_query("SELECT id, settings, description, links, link, views, category FROM `".PREFIX."_ads` WHERE user_id = '{$user_id}' ORDER by rand() ASC LIMIT {$limit_page}, {$gcount}", 1);
 
 			//top tabs bar
 			$tpl->load_template('ads/ads_top.tpl');
@@ -134,36 +126,24 @@ if($logged){
 
 		//Редактор обявлений
 		case "edit_save":
-
 			NoAjaxQuery();
 
-			$id = intval($_POST['id']);
-
+			$id = numFilter2($_POST['id']);
 			$settings = ajax_utf8(textFilter($_POST['settings']));
-			
-            $link_photos = $_POST['link_photos'];
-
-            $link_site = $_POST['link_site'];
-
+            $link_photos = textFilter2($_POST['link_photos']);
+            $link_site = textFilter2($_POST['link_site']);
             $description = ajax_utf8(textFilter($_POST['description']));
-
-			$category =  $_POST['category'];
+			$category =  numFilter2($_POST['category']);
 
 			if($id){
-
 				$db->query("UPDATE `".PREFIX."_ads` SET settings = '{$settings}', links = '{$link_site}', link = '{$link_photos}', description = '{$description}', category = '{$category}' WHERE id = '{$id}'");
-				
 				echo '1';
-			
 			}
-
 			exit();
-
 		break;
 
 		//Создаем обявление пользователя
 		case "create_ads":
-
 			//top tabs bar
 			$tpl->load_template('ads/ads_top.tpl');
 
@@ -185,53 +165,28 @@ if($logged){
 
 		//Записываем все данные в базу данных
         case "add_ads":
-
             $title = ajax_utf8(textFilter($_POST['title']));
-
             $description = ajax_utf8(textFilter($_POST['description']));
 
             $link_photos = textFilter2($_POST['link_photos']);
-
             $link_site = textFilter2($_POST['link_site']);
-			
-			$category = $_POST['category'];
 
-            $transitions = intval($_POST['transitions']);
-
-            //fix balancebug#1
-            if ($transitions < 0) {
-                $transitions = 0;
-            };
-
-            //$link_site = "";
-            //$link_photos = "";
+			$category = numFilter2($_POST['category']);
+            $transitions = numFilter2($_POST['transitions']);
 
             $ubalance = $db->super_query("SELECT user_balance FROM `".PREFIX."_users` WHERE user_id = '{$user_id}'");
-
             if($transitions <= $ubalance['user_balance']){
-
                 if($title AND $link_photos AND $link_site AND $transitions AND $description){
-
 					$db->query("INSERT INTO `".PREFIX."_ads` SET settings = '{$title}', description = '{$description}', links = '{$link_site}', link = '{$link_photos}', category = '{$category}', views = '{$transitions}', user_id = '{$user_id}'");
-
 					$db->query("UPDATE `".PREFIX."_users` SET user_balance=user_balance-'{$transitions}' WHERE user_id='{$user_id}'");
-
 					echo '1';
-
                 } else {
-
                     echo '2';  
-					
                 }
-
             } else {
-
                 echo '3';
-
             }
-
-        die();
-
+            die();
         break;
 
 		//Ajax JQuery Подгрузка обявлений

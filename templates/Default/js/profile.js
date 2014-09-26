@@ -740,13 +740,13 @@ var videos = {
 	load: function(){
 		video_lnk = $('#video_lnk').val();
 		good_video_lnk = $('#good_video_lnk').val();
-		if(videos.serviece(video_lnk)){
+		if(videos.service(video_lnk)){
 			if(video_lnk != 0){
 				if(video_lnk != good_video_lnk){
 					$('#box_loading').show();
 					$.post('/index.php?go=videos&act=load', {video_lnk: video_lnk}, function(data){
-						if(data == 'no_serviece'){
-							$('#no_serviece').show();
+						if(data == 'no_service'){
+							$('#no_service').show();
 						} else {
 							row = data.split(':|:');
 							$('#result_load').show();
@@ -754,20 +754,20 @@ var videos = {
 							$('#title').val(row[1]);
 							$('#descr').val(row[2]);
 							$('#good_video_lnk').val(video_lnk);
-							$('#no_serviece').hide();
+							$('#no_service').hide();
 						}
 						$('#box_but').show();
 						$('#box_loading').hide();
 					});
 				} else
-					$('#no_serviece').hide();
+					$('#no_service').hide();
 			} else
 				$('#result_load').hide();
 		} else
-			$('#no_serviece').show();
+			$('#no_service').show();
 	},
-	serviece: function(request){
-		var pattern = new RegExp(/http:\/\/www.youtube.com|http:\/\/youtube.com|http:\/\/rutube.ru|http:\/\/www.rutube.ru|http:\/\/www.vimeo.com|http:\/\/vimeo.com|http:\/\/smotri.com|http:\/\/www.smotri.com/i);
+	service: function(request){
+		var pattern = new RegExp(/https?:\/\/www.youtube.com|https?:\/\/youtube.com|http:\/\/rutube.ru|http:\/\/www.rutube.ru|http:\/\/www.vimeo.com|http:\/\/vimeo.com|http:\/\/smotri.com|http:\/\/www.smotri.com/i);
 		return pattern.test(request);
 	},
 	send: function(notes){

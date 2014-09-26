@@ -59,7 +59,7 @@ if($logged){
 
 			$metatags['title'] = 'Редактирование приложения';
 
-			$id = intval($_GET['id']);
+			$id = numFilter2($_GET['id']);
 
 			$row = $db->super_query("SELECT `id`, `title`, `desc`, `img`,`secret`,`user_id`,`admins` FROM `".PREFIX."_apps` WHERE `id`='{$id}'");
 
@@ -98,50 +98,31 @@ if($logged){
 
 		// Сохранение страницы info
 		case "save_info":
-
 			NoAjaxQuery();
-
-			$id = intval($_POST['app']);
-
-			$app_hash = $_POST['app_hash'];
-
+			$id = numFilter2($_POST['app']);
+			$app_hash = textFilter2($_POST['app_hash']);
 			$title = textFilter2($_POST['app_title']);
 			$desc = textFilter2($_POST['app_desc']);
-            if ($title == "" OR $desc == "") {
-                die();
-            };
+
+			if($title == '') die("name");
+    		if($desc == '') die("desc");
 
 			if($app_hash == md5($id.'_'.$key)){
-
-				if($title == '') die("name");
-
-				elseif($desc == '') die("desc");
-
 				$db->query("SET NAMES 'utf8'"); // Я почему то не смог нормально записать)
-
 				$db->query("UPDATE `".PREFIX."_apps` SET `title`='{$title}', `desc`='{$desc}' WHERE `id`='{$id}'");
-
 				echo 'ok';
-
 			} else {
-
 				$tpl->load_template('editapp/error.tpl');
-
 				$tpl->compile('content');
-
 			}
-			
-		die();
-
+    		die();
 		break;
 
 
 		//Вкладка настройки
 		case "options":
-
 			$metatags['title'] = 'Редактирование приложения';
-
-			$id = intval($_GET['id']);
+			$id = numFilter2($_GET['id']);
 
 			$row = $db->super_query("SELECT `id`, `title`, `desc`, `img`,`status`,`secret`,`width`,`height`,`url`,`user_id`,`admins`,`type` FROM `".PREFIX."_apps` WHERE `id`='{$id}'");
 
@@ -151,13 +132,9 @@ if($logged){
 
 				// Немного убого, но я ленив)
 				if($row['status'] == 1){
-
 					$option = '<option value="1" selected="selected">Приложение включено и видно всем</option><option value="-1" >Приложение отключено</option>';
-
 				}else{
-
 					$option = '<option value="1" >Приложение включено и видно всем</option><option value="-1" selected="selected">Приложение отключено</option>';
-
 				}
 
 				if($row['type'] == 1){
@@ -221,71 +198,50 @@ if($logged){
 
 			NoAjaxQuery();
 
-			$id = intval($_POST['app']);
+			$id = numFilter2($_POST['app']);
 
-			$app_hash = $_POST['app_hash'];
-
-			$secret = $_POST['app_secret'];
-
+			$app_hash = textFilter2($_POST['app_hash']);
+			$secret = textFilter2($_POST['app_secret']);
 			$url = textFilter2($_POST['app_url']);
- 
-			$status = intval($_POST['app_status']);
 
-			$width = intval($_POST['app_width']);
+			$status = numFilter2($_POST['app_status']);
 
-			$height = intval($_POST['app_height']);
-
-			$type = intval($_POST['app_type']);
-
+			$width = numFilter2($_POST['app_width']);
+			$height = numFilter2($_POST['app_height']);
+			$type = numFilter2($_POST['app_type']);
 
 			if($secret == '') die("secret2");
-
 			elseif($url == '' and $type == '1') die("iframe_url");
-
 			elseif($width == '' and $type == '1') die("iframe_width");
-
 			elseif($height == '' and $type == '1') die("iframe_height");
 
 			if($app_hash == md5($id.'_'.$key)){
-
 				$db->query("UPDATE `".PREFIX."_apps` SET `secret`='{$secret}', `status`='{$status}', `url`='{$url}', `width`='{$width}', `height`='{$height}', `type`='{$type}' WHERE `id`='{$id}'");
-
 				echo 'ok';
-
 			} else {
-
 				$tpl->load_template('editapp/error.tpl');
-
 				$tpl->compile('content');
-
 			}
-
-		die();
-
+    		die();
 		break;
 
 		//Окно загрузки swf
 		case "load_flash":
-
 			NoAjaxQuery();
 
-			$tpl->set('{id}', intval($_GET['id']));
-
+			$tpl->set('{id}', numFilter2($_GET['id']));
 			$tpl->load_template('/editapp/load_flash.tpl');
-
 			$tpl->compile('content');
-
 			AjaxTpl();
 
 			die();
-
 		break;
 
 		case 'flash':
 
 			NoAjaxQuery();
 
-			$id = intval($_GET['id']);
+			$id = numFilter2($_GET['id']);
 
 			$flash_tmp = $_FILES['uploadfile']['tmp_name'];
 
@@ -335,7 +291,7 @@ if($logged){
 
 			$metatags['title'] = 'Редактирование приложения';
 
-			$id = intval($_GET['id']);
+			$id = numFilter2($_GET['id']);
 
 			$row = $db->super_query("SELECT `id`,`user_id`,`balance`,`admins` FROM `".PREFIX."_apps` WHERE `id`='{$id}'");
 
@@ -396,7 +352,7 @@ if($logged){
 
 			$metatags['title'] = 'Редактирование приложения';
 
-			$id = intval($_GET['id']);
+			$id = numFilter2($_GET['id']);
 
 			$row = $db->super_query("SELECT `id`,`user_id`,`admins` FROM `".PREFIX."_apps` WHERE `id`='{$id}'");
 
@@ -468,11 +424,11 @@ if($logged){
 
 		case 'save_admin':
 
-			$id = intval($_POST['id']);
+			$id = numFilter2($_POST['id']);
 
-			$app_hash = $_POST['hash'];
+			$app_hash = textFilter2($_POST['hash']);
 
-			$addr = intval($_POST['addr']);
+			$addr = numFilter2($_POST['addr']);
 
 			if($app_hash == md5($id.'_'.$key)){
 
@@ -507,49 +463,32 @@ if($logged){
 
     	case 'del_admin':
 
-			$id = intval($_POST['id']);
-
-			$app_hash = $_POST['hash'];
-
-			$addr = intval($_POST['addr']);
+			$id = numFilter2($_POST['id']);
+			$app_hash = textFilter2($_POST['hash']);
+			$addr = numFilter2($_POST['addr']);
 
 			if($app_hash == md5($id.'_'.$key)){
-
 				$myRow = $db->super_query("SELECT admins,user_id FROM `".PREFIX."_apps` WHERE id = '{$id}'");
-
 				$array_admin = explode('|', $myRow['admins']);
-
 				if($myRow['user_id'] == $addr) die("general");
-
 				if(in_array($addr, $array_admin) AND $user_id != $addr){
-
 					$myRow['admins'] = str_replace("|{$addr}|", "", $myRow['admins']);
-
 					$db->query("UPDATE `".PREFIX."_apps` SET admins_num = admins_num-1, admins = '{$myRow['admins']}' WHERE id = '{$id}'");
-
 					echo 'ok';
-
 				} else echo "not";
-			
 			} else {
-
 				$tpl->load_template('editapp/error.tpl');
-
 				$tpl->compile('content');
-
 			}
-
 			die();
-
     	break;
 
 		case "del_admin_form":
+			$id = numFilter2($_POST['id']);
 
-			$id = intval($_POST['id']);
+			$addr = numFilter2($_POST['addr']);
 
-			$addr = intval($_POST['addr']);
-
-			$app_hash = $_POST['hash'];
+			$app_hash = textFilter2($_POST['hash']);
 
 			if($app_hash == md5($id.'_'.$key)){
 
@@ -619,7 +558,7 @@ if($logged){
 
    			NoAjaxQuery();
 
-   			$id = intval($_POST['id']);
+   			$id = numFilter2($_POST['id']);
 
    			$row = $db->super_query("SELECT user_photo, user_search_pref FROM `".PREFIX."_users` WHERE user_id = '{$id}'");
 
@@ -632,28 +571,20 @@ if($logged){
 		//Удаление приложения
 		case "deleteapp":
 
-			$id = intval($_POST['app']);
+			$id = numFilter2($_POST['app']);
 
-			$app_hash = $_POST['app_hash'];
+			$app_hash = textFilter2($_POST['app_hash']);
 
 			if($app_hash == md5($id.'_'.$key)){
-
 				$app = $db->super_query("SELECT title, user_id FROM `".PREFIX."_apps` WHERE id = '{$id}'");
-
 				if($app['user_id'] == $user_id){
-
 					$db->query("DELETE FROM `".PREFIX."_apps` WHERE `id`='{$id}'");
-
 					echo "ok";
-
 				} else echo "not";
 
 			} else {
-
 				$tpl->load_template('editapp/error.tpl');
-
 				$tpl->compile('content');
-
 			}
 
 		break;
@@ -663,7 +594,7 @@ if($logged){
 
 			NoAjaxQuery();
 
-			$tpl->set('{id}', intval($_GET['id']));
+			$tpl->set('{id}', numFilter2($_GET['id']));
 
 			$tpl->load_template('/editapp/load_photo.tpl');
 
@@ -677,25 +608,19 @@ if($logged){
 
 		//Функция загрузки фото
 		case "upload":
-
 			NoAjaxQuery();
 
 			include ENGINE_DIR.'/classes/images.php';
-
-			$id = intval($_GET['id']);
-
+			$id = numFilter2($_GET['id']);
 			$uploaddir = ROOT_DIR.'/uploads/apps/';
 			
 			//Если нет папок юзера, то создаём её
 			if(!is_dir($uploaddir.$id)){ 
-
 				@mkdir($uploaddir.$id, 0777 );
-
 				@chmod($uploaddir.$id, 0777 );
-
 			}
 
-			//Разришенные форматы
+			//Разрешенные форматы
 			$allowed_files = array('jpg', 'png', 'gif');
 
 			//Получаем данные о фотографии

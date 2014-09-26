@@ -321,7 +321,7 @@ $domain_allow_count = -2;
 
 if($domain_cookie_count > 2){
 
-	if(in_array($domain_cookie[$domain_cookie_count-2], array('com', 'net', 'org') )) 
+	if(in_array($domain_cookie[$domain_cookie_count-2], array('com', 'net', 'org') ))
 		$domain_allow_count = -3;
 		
 	if($domain_cookie[$domain_cookie_count-1] == 'ua' ) 
@@ -933,13 +933,25 @@ function textFilter($source, $substr_num = false, $strip_tags = false){
 	return $source;
 }
 function textFilter2($source){
-    if (preg_match('/^[a-zA-Z0-9\.\_\-\:\/]+$/',$source)){
+    if (preg_match('/^[a-zA-Z0-9\.\_\-\:\/\?\=\& ]+$/',$source)){
            //$source = "";
            ;
     } else {
            $source = "";
     };
 	return $source;
+}
+function numFilter2($source) {
+    $source = intval($source);
+    if ($source < 0) {
+        $source = 0;
+    };
+	return $source;
+}
+function recalc_groups($db, $user_id) {
+    $row = $db->super_query("SELECT count(*) cnt FROM `".PREFIX."_communities_demands` WHERE for_user_id = '{$user_id}'");
+    $num_demands = $row["cnt"];
+	$db->query("UPDATE `".PREFIX."_users` SET user_new_groups = {$num_demands} WHERE user_id = '{$user_id}'");
 }
 function user_age($user_year, $user_month, $user_day){
 	global $server_time;

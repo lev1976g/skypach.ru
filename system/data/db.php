@@ -2,11 +2,11 @@
 
 define ("DBHOST", "localhost"); //сервер базы данных
 
-define ("DBNAME", "XXXXX"); // имя базы данных
+define ("DBNAME", "XX"); // имя базы данных
 
-define ("DBUSER", "XXXXXX"); // mysql пользователь
+define ("DBUSER", "XXXX"); // mysql пользователь
 
-define ("DBPASS", "XXXXXXX");  // пароль mysql
+define ("DBPASS","XXXXX");  // пароль mysql
 
 define ("PREFIX", "vii"); /* НЕ ТРОГАТЬ */
 

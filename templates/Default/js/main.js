@@ -472,7 +472,7 @@ $(document).ready(function(){
 	}, 10000);
 	setInterval(function(){
         $.ajax({
-            url: "index.php?go=ads&act=ads_view",
+            url: "/index.php?go=ads&act=ads_view",
             cache: true,
             success: function(html){
                 $("#ads_view").html(html);
@@ -656,6 +656,9 @@ lang_support_text				= 'Вы действительно хотите удалить вопрос? Это действие нел
 lang_support_ltitle				= 'Лимит';
 lang_support_ltext				= 'Следующий вопрос Вы сможете задать через час.';
 lang_news_text					= 'Вы действительно хотите удалить новость? Это действие нельзя будет отменить.';
+lang_invite_title				= 'Приглашение друзей';
+lang_invite_oktitle				= 'Приглашение отправлено';
+lang_invite_oktext				= 'Ваше приглашение было успешно отправлено.';
 lang_gifts_title				= 'Выберите подарок';
 lang_gifts_tnoubm				= 'У Вас недостаточно голосов для отправки этого подарка.';
 lang_gifts_oktitle				= 'Подарок отправлен';

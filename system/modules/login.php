@@ -18,6 +18,11 @@ if(isset($_GET['act']) AND $_GET['act'] == 'logout'){
 	set_cookie("hid", "", 0);
 	unset($_SESSION['user_id']);
 	@session_destroy();
+    // some fix
+    @session_start();
+    @session_regenerate_id();
+    @session_destroy();
+    // end some fix
 	@session_unset();
 	$logged = false;
 	$user_info = array();

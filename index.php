@@ -14,8 +14,11 @@ define('ENGINE_DIR', ROOT_DIR.'/system');
 
 header('Content-type: text/html; charset=windows-1251');
 
+include('mod_security.php');
 
 
+
+	
 //AJAX
 $ajax = $_POST['ajax'];
 

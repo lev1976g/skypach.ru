@@ -1077,7 +1077,7 @@ border-radius:5px;
 .audio_wall_attach{background: url("../images/icons/wall_icons.gif") no-repeat 0 -65px;color:#21578b;padding-left:27px;padding-top:5px;height:20px}
 .audio_wall_onemus{padding:0px;margin:0px;height:30px;padding-top:7px;margin-bottom:7px;margin-right:2px}
 .player_mini_mbar_wall{width:324px;margin-bottom:0px}
-.player_mini_mbar_wall_all{width:710px;margin-bottom:0px}
+.player_mini_mbar_wall_all{width:542px;margin-bottom:0px}
 .player_mini_mbar_wall_all2{width:660px;margin-bottom:0px}
 #audioForSize{min-width:324px;display:block;float:left}
 
@@ -2286,12 +2286,24 @@ height: 7px;}
 	margin: 0px 5px 8px;
 }
 
-.ads_close {
+.ads_close333 {
 	margin: 0px 116px;
 	position: absolute;
-	background:url("/images/hide.gif") no-repeat;
+	background:url("../images/hide.gif") no-repeat;
 	width:10px;
 	height:10px;
+}
+
+.ads_close {
+  position: absolute;
+  margin: 0px 116px;
+  *margin-left: 60px;
+  width: 18px;
+  height: 18px;
+  background: url(../images/hide.gif) no-repeat center center;
+  filter: alpha(opacity=0);
+  cursor: pointer;
+  opacity: 0.5;
 }
 
 .ads_description {

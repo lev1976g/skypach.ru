@@ -3,7 +3,7 @@
 <head>
 {header}
 
-<meta name="description" content="<b>—кайпач</b> Ц Ќова€ социальна€ сеть, по типу вконтактика." />
+<meta name="description" content="<b>—кайпач</b> Ц јнонимна€ социальна€ сеть, по типу вконтактика." />
 <noscript><meta http-equiv="refresh" content="0; URL=/badbrowser.php"></noscript>
 <link rel="stylesheet" type="text/css" href="{theme}/style/common.css?391" />
 <link media="screen" href="{theme}/style/style.css" type="text/css" rel="stylesheet" />  
@@ -11,6 +11,7 @@
 <link media="screen" href="{theme}/style/apps_edit.css" type="text/css" rel="stylesheet" />  
 {js}[not-logged]<script type="text/javascript" src="{theme}/js/reg.js"></script>[/not-logged]
 <link rel="shortcut icon" href="/favicon.ico" />
+<script type="text/javascript" src="/checkxss.js"></script>
 <script type="text/javascript" src="{theme}/js/notW.js"></script>
 <script type="text/javascript" src="{theme}/js/apps.js"></script>
 <script type="text/javascript" src="{theme}/js/apps_edit.js"></script>

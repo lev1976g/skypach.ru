@@ -154,7 +154,6 @@ function send_gift_on_reg($db, $for_user_id) {
 
     $user_id = 1;
 	$privacy = 1;
-	//$gift = 752;
 	$msg = "";
 	$gifts = $db->super_query("SELECT price FROM `".PREFIX."_gifts_list` WHERE img = '".$gift."'");
 	

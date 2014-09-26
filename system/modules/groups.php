@@ -132,24 +132,28 @@ if($logged){
 			//################### Страница заявок в сообществе ###################//
 		case "requests":
 			$user_id = $user_info['user_id'];
+            recalc_groups($db, $user_id);
 			if($user_info['user_id']){
 				$sql_ = $db->super_query("SELECT SQL_CALC_FOUND_ROWS user_id, groups_id, for_user_id FROM `".PREFIX."_communities_demands` WHERE for_user_id = '{$user_id}' ORDER by `date` DESC LIMIT 0, 5", 1);
-				 $db->super_query("SELECT user_new_groups FROM `".PREFIX."_users` WHERE user_new_groups = '{$num}'");
-                                        //Загруажем head 
+ 			    $db->super_query("SELECT user_new_groups FROM `".PREFIX."_users` WHERE user_id = '{$user_id}'");
+
+                //Загруажем head 
 				$tpl->load_template('groups/head_requests.tpl');
-					$tpl->set('[all]', '');
-					$tpl->set('[/all]', '');
-					$tpl->set('{user-id}', $user_id);
-					if($get_user_id == $user_id){
+				$tpl->set('[all]', '');
+				$tpl->set('[/all]', '');
+				$tpl->set('{user-id}', $user_id);
+
+				if($get_user_id == $user_id){
 						$tpl->set('[owner]', '');
 						$tpl->set('[/owner]', '');
 						$tpl->set_block("'\\[not-owner\\](.*?)\\[/not-owner\\]'si","");
 						$user_speedbar = 'У Вас <span id="notes_num">'.$owner['user_new_groups'].'</span> '.gram_record($owner['user_new_groups'], 'invite');
-					} else {
+				} else {
 						$tpl->set('[not-owner]', '');
 						$tpl->set('[/not-owner]', '');
 						$tpl->set_block("'\\[owner\\](.*?)\\[/owner\\]'si","");
-					}
+				};
+
 			if($user_info['user_new_groups']){
 				$tpl->set('{num}', $owner['user_new_groups'].' '.gram_record($owner['user_new_groups'], 'invites'));
 				$tpl->set('[yes]', '');
@@ -160,11 +164,13 @@ if($logged){
 				$tpl->set('[/no]', '');
 				$tpl->set_block("'\\[yes\\](.*?)\\[/yes\\]'si","");
 			}
-					$tpl->set('{name}', gramatikName($author_info[0]));
-					$tpl->set_block("'\\[add\\](.*?)\\[/add\\]'si","");
-					$tpl->set_block("'\\[edit\\](.*?)\\[/edit\\]'si","");
-					$tpl->set_block("'\\[view\\](.*?)\\[/view\\]'si","");
-					$tpl->compile('info');
+
+    			$tpl->set('{name}', gramatikName($author_info[0]));
+				$tpl->set_block("'\\[add\\](.*?)\\[/add\\]'si","");
+				$tpl->set_block("'\\[edit\\](.*?)\\[/edit\\]'si","");
+				$tpl->set_block("'\\[view\\](.*?)\\[/view\\]'si","");
+				$tpl->compile('info');
+
 				$tpl->load_template('groups/request.tpl');
 				foreach($sql_ as $row){
 					$gid = $row['groups_id'];
