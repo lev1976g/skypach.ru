@@ -17,8 +17,10 @@ if($logged){
 			//################### Вывод новостей ###################//
 			$type = $_GET['type']; #тип сортировки
 			
-			$sql_where = "tb1.ac_user_id IN (SELECT tb2.friend_id FROM `".PREFIX."_friends` tb2 WHERE user_id = '{$user_id}') AND";
-			
+
+            $tbl2 = ", `".PREFIX."_friends` tb2 ";
+            $sql_where = " tb2.user_id = '{$user_id}' AND tb2.friend_id = tb1.ac_user_id AND ";
+
 			//Если вызвана страница обновлений
 			if($type == 'updates'){
 				$metatags['title'] = $lang['news_updates'];
@@ -47,8 +49,10 @@ if($logged){
 				$sql_sort = '6,7,8,9,10';
 				$dop_sort = "AND tb1.for_user_id = '{$user_id}'";
 				$no_news = '<br /><br />'.$lang['news_none_notifica'].'<br /><br /><br />';
-				$sql_where = '';
-				
+
+				$tbl2 = '';
+                $sql_where = '';
+
 				//Обновляем счетчик новых новостей, ставим 0
 				$CacheNews = mozg_cache('user_'.$_SESSION['user_id'].'/new_news');
 				if($CacheNews)
@@ -59,12 +63,6 @@ if($logged){
 				$sql_sort = '1,2,3,11';
 				$no_news = '<br /><br />'.$lang['news_none'].'<br /><br /><br />';
 				$type = '';
-				
-				$sql_where = "
-					tb1.ac_user_id IN (SELECT tb2.friend_id FROM `".PREFIX."_friends` tb2 WHERE user_id = '{$user_id}' AND tb1.action_type IN (1,2,3) AND subscriptions != 2) 
-				OR 
-					tb1.ac_user_id IN (SELECT tb2.friend_id FROM `".PREFIX."_friends` tb2 WHERE user_id = '{$user_id}' AND tb1.action_type = 11 AND subscriptions = 2) 
-				AND";
 			}
 			
 			if($_POST['page_cnt'] > 0)
@@ -92,14 +90,15 @@ if($logged){
 				SELECT SQL_CALC_FOUND_ROWS 
 					tb1.ac_id, ac_user_id, action_text, action_time, action_type, obj_id
 				FROM 
-					`".PREFIX."_news` tb1
+					`".PREFIX."_news` tb1 {$tbl2}
 				WHERE 
-					{$sql_where}
+                    {$sql_where}
 					tb1.action_type IN ({$sql_sort})
 					{$dop_sort}
 				ORDER BY tb1.action_time DESC
 				LIMIT {$page_cnt}, {$limit_news}
 			", 1);
+
 
 			if($sql_){
 				$c = 0;
@@ -126,7 +125,7 @@ if($logged){
 						$tpl->set('{link}', 'public');
 					}
 
-					//Выводим данные о том кто инсцинировал действие
+					//Выводим данные о том кто инсценировал действие
 					if($row['user_sex'] == 2){
 						$sex_text = 'добавила';
 						$sex_text_2 = 'ответила';
