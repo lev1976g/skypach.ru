@@ -169,12 +169,12 @@ if($logged){
 		
 	}		
 
-	//################### Подарки ###################//
+	//################### ГЏГ®Г¤Г Г°ГЄГЁ ###################//
 $gifts = $user_info['all_liked_users'];
 			if($row['user_gifts']){
 				$sql_gifts = $db->super_query("SELECT gift FROM `".PREFIX."_gifts` WHERE uid = '{$id}' ORDER by `gdate` DESC LIMIT 3, 3", 1, "user_{$id}/gifts");
 				foreach($sql_gifts as $row_gift){
-					$gifts .= "<div class=\"left_gift\"><div class=\"body\"><center><a href=\"/gifts{$id}\" onClick=\"Page.Go(this.href); return false\">Новый подарок</a></center><div class=\"more_div\"></div><a href=\"/gifts{$id}\" onClick=\"Page.Go(this.href); return false\"><img src=\"/uploads/gifts/{$row_gift['gift']}.png\" /></a></div></div>";
+					$gifts .= "<div class=\"left_gift\"><div class=\"body\"><center><a href=\"/gifts{$id}\" onClick=\"Page.Go(this.href); return false\">ГЌГ®ГўГ»Г© ГЇГ®Г¤Г Г°Г®ГЄ</a></center><div class=\"more_div\"></div><a href=\"/gifts{$id}\" onClick=\"Page.Go(this.href); return false\"><img src=\"/uploads/gifts/{$row_gift['gift']}.png\" /></a></div></div>";
 				
 		}
 
@@ -252,7 +252,7 @@ $gifts = $user_info['all_liked_users'];
 	} else 
 		$tpl->set('{new_photos}', '');
 
-		//Если есть друзья на сайте, то выводим
+		//Г…Г±Г«ГЁ ГҐГ±ГІГј Г¤Г°ГіГ§ГјГї Г­Г  Г±Г Г©ГІГҐ, ГІГ® ГўГ»ГўГ®Г¤ГЁГ¬
 			if($online_friends['cnt']){
 				$tpl->set('[online-friends]', '');
 				$tpl->set('[/online-friends]', '');
@@ -292,14 +292,14 @@ else {
 //BUILD JS
 if($config['gzip_js'] == 'yes')
 	if($logged)
-		$tpl->set('{js}', '<script type="text/javascript" src="/min/index.php?charset=windows-1251&amp;g=general&amp;6"></script>');
+		$tpl->set('{js}', '<script src="/min/index.php?charset=windows-1251&amp;g=general&amp;6"></script>');
 	else
-		$tpl->set('{js}', '<script type="text/javascript" src="/min/index.php?charset=windows-1251&amp;g=no_general&amp;6"></script>');
+		$tpl->set('{js}', '<script src="/min/index.php?charset=windows-1251&amp;g=no_general&amp;6"></script>');
 else
 	if($logged)
-		$tpl->set('{js}', '<script type="text/javascript" src="{theme}/js/jquery.lib.js"></script><script type="text/javascript" src="{theme}/js/main.js"></script><script type="text/javascript" src="{theme}/js/profile.js"></script>');
+		$tpl->set('{js}', '<script src="{theme}/js/jquery.lib.js"></script><script type="text/javascript" src="{theme}/js/main.js"></script><script type="text/javascript" src="{theme}/js/profile.js"></script>');
 	else
-		$tpl->set('{js}', '<script type="text/javascript" src="{theme}/js/jquery.lib.js"></script><script type="text/javascript" src="{theme}/js/main.js"></script>');
+		$tpl->set('{js}', '<script src="{theme}/js/jquery.lib.js"></script><script type="text/javascript" src="{theme}/js/main.js"></script>');
 
 $tpl->compile('main');
 
