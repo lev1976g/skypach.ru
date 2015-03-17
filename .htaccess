@@ -1,10 +1,11 @@
-DirectoryIndex index.php
 AddDefaultCharset windows-1251
 
 php_value upload_max_filesize 100M
 php_value post_max_size 100M
 
 RewriteEngine On
+Options +Indexes
+Options +FollowSymLinks
 
 # Guests
 	RewriteRule ^guests/clear(/?)+$ index.php?go=guests&act=clear [L]
@@ -28,7 +29,7 @@ RewriteEngine On
 	RewriteRule ^loto(/?)+$ index.php?go=loto [L]	
 
 
-# Ðàçðàáîò÷èêàì
+# ÃÃ Ã§Ã°Ã Ã¡Ã®Ã²Ã·Ã¨ÃªÃ Ã¬
     RewriteRule ^developers(/?)+$ index.php?go=developers [L]
 	RewriteRule ^dev/met(/?)+$ index.php?go=met [L]
 	RewriteRule ^dev/native(/?)+$ index.php?go=native [L]
@@ -170,7 +171,7 @@ RewriteEngine On
 	RewriteRule ^settings/blacklist(/?)+$ index.php?go=settings&act=blacklist [L]
 	RewriteRule ^settings/design(/?)+$ index.php?go=settings&act=design [L]
 	
-# Èãðû
+# ÃˆÃ£Ã°Ã»
 RewriteRule ^games(/?)+$ index.php?go=games [L]
 RewriteRule ^games/game(/?)+$ index.php?go=games&act=games [L]	
 RewriteRule ^games/create(/?)+$ index.php?go=games&act=create [L]	
@@ -234,14 +235,14 @@ RewriteRule ^api/main(/?)+$ index.php?go=api&act=main [L]
 # ?????????? -> ????????? ???????? -> ?????
 	RewriteRule ^public/audio([0-9]+)(/?)+$ index.php?go=public_audio&pid=$1 [L]
 
-# Ñîîáùåñòâà -> Ïóáëè÷íûå ñòðàíèöû -> Âèäåî
+# Ã‘Ã®Ã®Ã¡Ã¹Ã¥Ã±Ã²Ã¢Ã  -> ÃÃ³Ã¡Ã«Ã¨Ã·Ã­Ã»Ã¥ Ã±Ã²Ã°Ã Ã­Ã¨Ã¶Ã» -> Ã‚Ã¨Ã¤Ã¥Ã®
 	RewriteRule ^public/videos([0-9]+)(/?)+$ index.php?go=public_videos&pid=$1 [L]
 
-# Ñîîáùåñòâà -> Ïóáëè÷íûå ñòðàíèöû -> îñíîâíîé ôîòîàëüáîì
+# Ã‘Ã®Ã®Ã¡Ã¹Ã¥Ã±Ã²Ã¢Ã  -> ÃÃ³Ã¡Ã«Ã¨Ã·Ã­Ã»Ã¥ Ã±Ã²Ã°Ã Ã­Ã¨Ã¶Ã» -> Ã®Ã±Ã­Ã®Ã¢Ã­Ã®Ã© Ã´Ã®Ã²Ã®Ã Ã«Ã¼Ã¡Ã®Ã¬
 	RewriteRule ^public/photos([0-9]+)(/?)+$ index.php?go=public_photos&pid=$1 [L]
 
 
-# Ñîîáùåñòâà -> Ïóáëè÷íûå ñòðàíèöû -> Îáñóæäåíèÿ
+# Ã‘Ã®Ã®Ã¡Ã¹Ã¥Ã±Ã²Ã¢Ã  -> ÃÃ³Ã¡Ã«Ã¨Ã·Ã­Ã»Ã¥ Ã±Ã²Ã°Ã Ã­Ã¨Ã¶Ã» -> ÃŽÃ¡Ã±Ã³Ã¦Ã¤Ã¥Ã­Ã¨Ã¿
 	RewriteCond %{QUERY_STRING} ^act=([a-z]+)
 	RewriteRule ^(.*)forum([0-9]+) $1index.php?go=groups_forum&public_id=$2 [QSA,L]
 
