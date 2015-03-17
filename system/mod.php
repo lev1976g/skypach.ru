@@ -1,6 +1,6 @@
 <?php
 /* 
-	Appointment: Подключение модулей
+	Appointment: ГЏГ®Г¤ГЄГ«ГѕГ·ГҐГ­ГЁГҐ Г¬Г®Г¤ГіГ«ГҐГ©
 	File: mod.php 
  
 */
@@ -18,19 +18,19 @@ check_xss();
 
 switch($go){
 	
-	//Регистрация
+	//ГђГҐГЈГЁГ±ГІГ°Г Г¶ГЁГї
 	case "register":
 		include ENGINE_DIR.'/modules/register.php';
 	break;
 
 	
-	//Профиль пользователя
+	//ГЏГ°Г®ГґГЁГ«Гј ГЇГ®Г«ГјГ§Г®ГўГ ГІГҐГ«Гї
 	case "profile":
 		$spBar = true;
 		include ENGINE_DIR.'/modules/profile.php';
 	break;
 
-	//Лото
+	//Г‹Г®ГІГ®
 	case "loto":
  	include ENGINE_DIR.'/modules/loto.php';
 	break;
@@ -46,46 +46,46 @@ switch($go){
   include ENGINE_DIR.'/modules/developers.php';
  break;
 
-	//Редактирование моей страницы
+	//ГђГҐГ¤Г ГЄГІГЁГ°Г®ГўГ Г­ГЁГҐ Г¬Г®ГҐГ© Г±ГІГ°Г Г­ГЁГ¶Г»
 	case "editprofile":
 		$spBar = true;
 		include ENGINE_DIR.'/modules/editprofile.php';
 	break;
 
-	//левое меню realtime
+	//Г«ГҐГўГ®ГҐ Г¬ГҐГ­Гѕ realtime
 	case "leftmenu":
 		include ENGINE_DIR.'/modules/leftmenu.php';
 	break;
 	
-	//Загрузка городов
+	//Г‡Г ГЈГ°ГіГ§ГЄГ  ГЈГ®Г°Г®Г¤Г®Гў
 	case "loadcity":
 		include ENGINE_DIR.'/modules/loadcity.php';
 	break;
 
-	//чат
+	//Г·Г ГІ
 	case "chat":
 		include ENGINE_DIR.'/modules/mchat.php';
 	break;
 
-//Музыка
+//ГЊГіГ§Г»ГЄГ 
 	case "audio":
 		if($config['audio_mod'] == 'yes')
 			include ENGINE_DIR.'/modules/audio.php';
 		else {
 			$spBar = true;
-			$user_speedbar = 'Информация';
-			msgbox('', 'Сервис отключен.', 'info');
+			$user_speedbar = 'Г€Г­ГґГ®Г°Г¬Г Г¶ГЁГї';
+			msgbox('', 'Г‘ГҐГ°ГўГЁГ± Г®ГІГЄГ«ГѕГ·ГҐГ­.', 'info');
 		}
 	break;
 
-	//Приложения
+	//ГЏГ°ГЁГ«Г®Г¦ГҐГ­ГЁГї
 	case "apps":
 		$cssTpl = true;
 		$css_loading = 'apps';
 		include ENGINE_DIR.'/modules/apps.php';
 	break;
 	
-	// Удаление приложения
+	// Г“Г¤Г Г«ГҐГ­ГЁГҐ ГЇГ°ГЁГ«Г®Г¦ГҐГ­ГЁГї
     case "delete_app":;
     $id = intval($_POST['id']);
     if($id){
@@ -95,7 +95,7 @@ switch($go){
         @unlink($del_dir.$sql_['flash']);
         @unlink($del_dir.$sql_['img']);    
 }
-	//Ред. Приложения
+	//ГђГҐГ¤. ГЏГ°ГЁГ«Г®Г¦ГҐГ­ГЁГї
 	case "editapp":
 		$cssTpl = true;
 		$css_loading = 'apps_edit';
@@ -103,217 +103,217 @@ switch($go){
 	break;
 
 	
-	//Альбомы
+	//ГЂГ«ГјГЎГ®Г¬Г»
 	case "albums":
 		$spBar = true;
 		if($config['album_mod'] == 'yes')
 			include ENGINE_DIR.'/modules/albums.php';
 		else {
-			$user_speedbar = 'Информация';
-			msgbox('', 'Сервис отключен.', 'info');
+			$user_speedbar = 'Г€Г­ГґГ®Г°Г¬Г Г¶ГЁГї';
+			msgbox('', 'Г‘ГҐГ°ГўГЁГ± Г®ГІГЄГ«ГѕГ·ГҐГ­.', 'info');
 		}
 	break;
 
-	//Граффити
+	//ГѓГ°Г ГґГґГЁГІГЁ
 	case "graffiti":
 		include ENGINE_DIR.'/modules/graffiti.php';
 	break;
 
-	//Просмотр фотографии
+	//ГЏГ°Г®Г±Г¬Г®ГІГ° ГґГ®ГІГ®ГЈГ°Г ГґГЁГЁ
 	case "photo":
 		include ENGINE_DIR.'/modules/photo.php';
 	break;
 	
-	//Друзья
+	//Г„Г°ГіГ§ГјГї
 	case "friends":
 		$spBar = true;
 		include ENGINE_DIR.'/modules/friends.php';
 	break;
 	
-	//Закладки
+	//Г‡Г ГЄГ«Г Г¤ГЄГЁ
 	case "fave":
 		$spBar = true;
 		include ENGINE_DIR.'/modules/fave.php';
 	break;
 
-	//Вк
+	//Г‚ГЄ
 	case "vklogin":
 		include ENGINE_DIR.'/modules/vklogin.php';
 	break;
 	
-	//Сообщения
+	//Г‘Г®Г®ГЎГ№ГҐГ­ГЁГї
 	case "messages":
 		$spBar = true;
 		include ENGINE_DIR.'/modules/messages.php';
 	break;
 	
-	//Диалоги
+	//Г„ГЁГ Г«Г®ГЈГЁ
 	case "im":
 		include ENGINE_DIR.'/modules/im.php';
 	break;
 
-	//Заметки
+	//Г‡Г Г¬ГҐГІГЄГЁ
 	case "notes":
 		$spBar = true;
 		include ENGINE_DIR.'/modules/notes.php';
 	break;
 	
-	//Подписки
+	//ГЏГ®Г¤ГЇГЁГ±ГЄГЁ
 	case "subscriptions":
 		include ENGINE_DIR.'/modules/subscriptions.php';
 	break;
 	
-	//Видео
+	//Г‚ГЁГ¤ГҐГ®
 	case "videos":
 		$spBar = true;
 		if($config['video_mod'] == 'yes')
 			include ENGINE_DIR.'/modules/videos.php';
 		else {
-			$user_speedbar = 'Информация';
-			msgbox('', 'Сервис отключен.', 'info');
+			$user_speedbar = 'Г€Г­ГґГ®Г°Г¬Г Г¶ГЁГї';
+			msgbox('', 'Г‘ГҐГ°ГўГЁГ± Г®ГІГЄГ«ГѕГ·ГҐГ­.', 'info');
 		}
 	break;
 	
-	//Поиск
+	//ГЏГ®ГЁГ±ГЄ
 	case "search":
 		include ENGINE_DIR.'/modules/search.php';
 	break;
 	
-	//Стена
+	//Г‘ГІГҐГ­Г 
 	case "wall":
 		$spBar = true;
 		include ENGINE_DIR.'/modules/wall.php';
 	break;
 	
-	//Статус
+	//Г‘ГІГ ГІГіГ±
 	case "status":
 		include ENGINE_DIR.'/modules/status.php';
 	break;
 	
-	//Новости
+	//ГЌГ®ГўГ®Г±ГІГЁ
 	case "news":
 		$spBar = true;
 		include ENGINE_DIR.'/modules/news.php';
 	break;
 	
-	//Настройки
+	//ГЌГ Г±ГІГ°Г®Г©ГЄГЁ
 	case "settings":
 		include ENGINE_DIR.'/modules/settings.php';
 	break;
 	
-	//Помощь
+	//ГЏГ®Г¬Г®Г№Гј
 	case "support":
 		include ENGINE_DIR.'/modules/support.php';
 	break;
 	
-	//Воостановление доступа
+	//Г‚Г®Г®Г±ГІГ Г­Г®ГўГ«ГҐГ­ГЁГҐ Г¤Г®Г±ГІГіГЇГ 
 	case "restore":
 		include ENGINE_DIR.'/modules/restore.php';
 	break;
 	
-	//Загрузка картинок при прикриплении файлов со стены, заметок, или сообщений
+	//Г‡Г ГЈГ°ГіГ§ГЄГ  ГЄГ Г°ГІГЁГ­Г®ГЄ ГЇГ°ГЁ ГЇГ°ГЁГЄГ°ГЁГЇГ«ГҐГ­ГЁГЁ ГґГ Г©Г«Г®Гў Г±Г® Г±ГІГҐГ­Г», Г§Г Г¬ГҐГІГ®ГЄ, ГЁГ«ГЁ Г±Г®Г®ГЎГ№ГҐГ­ГЁГ©
 	case "attach":
 		include ENGINE_DIR.'/modules/attach.php';
 	break;
 	
-	//Блог сайта
+	//ГЃГ«Г®ГЈ Г±Г Г©ГІГ 
 	case "blog":
 		$spBar = true;
 		include ENGINE_DIR.'/modules/blog.php';
 	break;
 
-	//Inline чат
+	//Inline Г·Г ГІ
 	case "im_chat":
 		include ENGINE_DIR.'/modules/im_chat.php';
 	break;
 
-	//Баланс
+	//ГЃГ Г«Г Г­Г±
 	case "balance":
 		include ENGINE_DIR.'/modules/balance.php';
 	break;
 	
-	//Подарки
+	//ГЏГ®Г¤Г Г°ГЄГЁ
 	case "gifts":
 		include ENGINE_DIR.'/modules/gifts.php';
 	break;
 
-	//Сообщества
+	//Г‘Г®Г®ГЎГ№ГҐГ±ГІГўГ 
 	case "groups":
 		include ENGINE_DIR.'/modules/groups.php';
 	break;
 	
-	//Сообщества -> Публичные страницы
+	//Г‘Г®Г®ГЎГ№ГҐГ±ГІГўГ  -> ГЏГіГЎГ«ГЁГ·Г­Г»ГҐ Г±ГІГ°Г Г­ГЁГ¶Г»
 	case "public":
 		$spBar = true;
 		include ENGINE_DIR.'/modules/public.php';
 	break;
 
-	//Сообщества -> Публичные страницы -> Обсуждения
+	//Г‘Г®Г®ГЎГ№ГҐГ±ГІГўГ  -> ГЏГіГЎГ«ГЁГ·Г­Г»ГҐ Г±ГІГ°Г Г­ГЁГ¶Г» -> ГЋГЎГ±ГіГ¦Г¤ГҐГ­ГЁГї
 	case "groups_forum":
 		include ENGINE_DIR.'/modules/groups_forum.php';
 	break;
 
-	//Сообщества -> Загрузка фото
+	//Г‘Г®Г®ГЎГ№ГҐГ±ГІГўГ  -> Г‡Г ГЈГ°ГіГ§ГЄГ  ГґГ®ГІГ®
 	case "attach_groups":
 		include ENGINE_DIR.'/modules/attach_groups.php';
 	break;
 
-	//Плеер в окне
+	//ГЏГ«ГҐГҐГ° Гў Г®ГЄГ­ГҐ
 	case "audio_player":
 		if($config['audio_mod'] == 'yes')
 			include ENGINE_DIR.'/modules/audio_player.php';
 		else {
 			$spBar = true;
-			$user_speedbar = 'Информация';
-			msgbox('', 'Сервис отключен.', 'info');
+			$user_speedbar = 'Г€Г­ГґГ®Г°Г¬Г Г¶ГЁГї';
+			msgbox('', 'Г‘ГҐГ°ГўГЁГ± Г®ГІГЄГ«ГѕГ·ГҐГ­.', 'info');
 		}
 	break;
 
 
 
-	//Статические страницы
+	//Г‘ГІГ ГІГЁГ·ГҐГ±ГЄГЁГҐ Г±ГІГ°Г Г­ГЁГ¶Г»
 	case "static":
 		include ENGINE_DIR.'/modules/static.php';
 	break;
 
-	//Заявки в Аякс
+	//Г‡Г ГїГўГЄГЁ Гў ГЂГїГЄГ±
 	case "ajaxfriends":
 		include ENGINE_DIR.'/modules/ajaxfriends.php';
 	break;
 
-	//Сообщения в Аякс
+	//Г‘Г®Г®ГЎГ№ГҐГ­ГЁГї Гў ГЂГїГЄГ±
 	case "ajaxmsg":
 		include ENGINE_DIR.'/modules/ajaxmsg.php';
 	break;
 
-	//Выделить человека на фото
+	//Г‚Г»Г¤ГҐГ«ГЁГІГј Г·ГҐГ«Г®ГўГҐГЄГ  Г­Г  ГґГ®ГІГ®
 	case "distinguish":
 		include ENGINE_DIR.'/modules/distinguish.php';
 	break;
 
-	//Скрываем блок Дни рожденья друзей
+	//Г‘ГЄГ°Г»ГўГ ГҐГ¬ ГЎГ«Г®ГЄ Г„Г­ГЁ Г°Г®Г¦Г¤ГҐГ­ГјГї Г¤Г°ГіГ§ГҐГ©
 	case "happy_friends_block_hide":
 		$_SESSION['happy_friends_block_hide'] = 1;
 		die();
 	break;
 
-	//Скрываем блок Дни рожденья друзей
+	//Г‘ГЄГ°Г»ГўГ ГҐГ¬ ГЎГ«Г®ГЄ Г„Г­ГЁ Г°Г®Г¦Г¤ГҐГ­ГјГї Г¤Г°ГіГ§ГҐГ©
 	case "fast_search":
 		include ENGINE_DIR.'/modules/fast_search.php';
 	break;
 
-	//Жалобы
+	//Г†Г Г«Г®ГЎГ»
 	case "report":
 		include ENGINE_DIR.'/modules/report.php';
 	break;
 
-	// Алиасы
+	// ГЂГ«ГЁГ Г±Г»
 	case "alias":
 	$spBar = true;
     $alias = $db->safesql($_GET['url']);
 	if($alias){
- 	$alias_public = $db->super_query("SELECT id,title FROM `".PREFIX."_communities` WHERE adres = '".$alias."' "); //Проверяем адреса у публичных страниц
-	$alias_user = $db->super_query("SELECT user_id, user_search_pref FROM `".PREFIX."_users` WHERE alias = '".$alias."'"); // Проверяем адреса у пользователей
+ 	$alias_public = $db->super_query("SELECT id,title FROM `".PREFIX."_communities` WHERE adres = '".$alias."' "); //ГЏГ°Г®ГўГҐГ°ГїГҐГ¬ Г Г¤Г°ГҐГ±Г  Гі ГЇГіГЎГ«ГЁГ·Г­Г»Гµ Г±ГІГ°Г Г­ГЁГ¶
+	$alias_user = $db->super_query("SELECT user_id, user_search_pref FROM `".PREFIX."_users` WHERE alias = '".$alias."'"); // ГЏГ°Г®ГўГҐГ°ГїГҐГ¬ Г Г¤Г°ГҐГ±Г  Гі ГЇГ®Г«ГјГ§Г®ГўГ ГІГҐГ«ГҐГ©
     if($alias_user){   			
 	    $_GET['id']= $alias_user['user_id'];
 	    include ENGINE_DIR.'/modules/profile.php';
@@ -322,52 +322,52 @@ switch($go){
 		include ENGINE_DIR.'/modules/public.php';
 	}else{
 	$spBar = true;
-			$user_speedbar = 'Информация';
-			msgbox('', 'Доменное имя <b>'.$alias.'</b> свободно для регистрации.', 'info');
+			$user_speedbar = 'Г€Г­ГґГ®Г°Г¬Г Г¶ГЁГї';
+			msgbox('', 'Г„Г®Г¬ГҐГ­Г­Г®ГҐ ГЁГ¬Гї <b>'.$alias.'</b> Г±ГўГ®ГЎГ®Г¤Г­Г® Г¤Г«Гї Г°ГҐГЈГЁГ±ГІГ°Г Г¶ГЁГЁ.', 'info');
 	}
 	}
     break;	
 
 
 
-	//Отправка записи в сообщество или другу
+	//ГЋГІГЇГ°Г ГўГЄГ  Г§Г ГЇГЁГ±ГЁ Гў Г±Г®Г®ГЎГ№ГҐГ±ГІГўГ® ГЁГ«ГЁ Г¤Г°ГіГЈГі
 	case "repost":
 		include ENGINE_DIR.'/modules/repost.php';
 	break;
 
-	//Моментальные оповещания
+	//ГЊГ®Г¬ГҐГ­ГІГ Г«ГјГ­Г»ГҐ Г®ГЇГ®ГўГҐГ№Г Г­ГЁГї
 	case "updates":
 		include ENGINE_DIR.'/modules/updates.php';
 	break;
 
-	//Документы
+	//Г„Г®ГЄГіГ¬ГҐГ­ГІГ»
 	case "doc":
 		include ENGINE_DIR.'/modules/doc.php';
 	break;
 
-	//Опросы
+	//ГЋГЇГ°Г®Г±Г»
 	case "votes":
 		include ENGINE_DIR.'/modules/votes.php';
 	break;
 	
-	//Сообщества -> Публичные страницы -> Аудиозаписи
+	//Г‘Г®Г®ГЎГ№ГҐГ±ГІГўГ  -> ГЏГіГЎГ«ГЁГ·Г­Г»ГҐ Г±ГІГ°Г Г­ГЁГ¶Г» -> ГЂГіГ¤ГЁГ®Г§Г ГЇГЁГ±ГЁ
 	case "public_audio":
 		include ENGINE_DIR.'/modules/public_audio.php';
 	break;
 
-	//Сообщества -> Публичные страницы -> Видеозаписи
+	//Г‘Г®Г®ГЎГ№ГҐГ±ГІГўГ  -> ГЏГіГЎГ«ГЁГ·Г­Г»ГҐ Г±ГІГ°Г Г­ГЁГ¶Г» -> Г‚ГЁГ¤ГҐГ®Г§Г ГЇГЁГ±ГЁ
 	case "public_videos":
 		include ENGINE_DIR.'/modules/public_videos.php';
 	break;
 
-	//Сообщества -> Публичные страницы -> Основной альбом
+	//Г‘Г®Г®ГЎГ№ГҐГ±ГІГўГ  -> ГЏГіГЎГ«ГЁГ·Г­Г»ГҐ Г±ГІГ°Г Г­ГЁГ¶Г» -> ГЋГ±Г­Г®ГўГ­Г®Г© Г Г«ГјГЎГ®Г¬
 	case "public_photos":
 		include ENGINE_DIR.'/modules/public_photos.php';
 	break;
 
 
 
-//Рейтинг
+//ГђГҐГ©ГІГЁГ­ГЈ
 case "rating":
 include ENGINE_DIR.'/modules/rating.php';
 break;
@@ -391,6 +391,6 @@ else
 	$speedbar = $lang['welcome'];
 
 $headers = '<title>'.$metatags['title'].'</title>
-<meta name="generator" content="TOEngine" />
+<meta name="generator" content="Soc Engine" />
 <meta http-equiv="content-type" content="text/html; charset=windows-1251" />';
 ?>
