@@ -1,7 +1,8 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ru" lang="ru">
+<!DOCTYPE html>
+<html lang="ru">
 <head>
-<title>Внимание! Вы используете устаревший браузер.</title>
+<title>Р’С‹ РёСЃРїРѕР»СЊР·СѓРµС‚Рµ СѓСЃС‚Р°СЂРµРІС€РёР№ Р±СЂР°СѓР·РµСЂ.</title>
+<meta charset="windows-1251">
 <meta http-equiv="content-type" content="text/html; charset=windows-1251" />
 <style type="text/css" media="all">
 html, body {
@@ -71,9 +72,9 @@ a:hover{text-decoration:underline;outline:none}
 <div id="bad_browser">
   <table cellspacing="0" cellpadding="0" id="head"><tr><td><div id="head1"></div></td><td id="head2"></td><td><div id="head3"></div></td></tr></table>
   <div id="content">
-    Внимание! Для работы с сайтом необходима поддержка Javascript и Cookies.
+    Р”Р»СЏ СЂР°Р±РѕС‚С‹ СЃ СЃР°Р№С‚РѕРј РЅРµРѕР±С…РѕРґРёРјР° РїРѕРґРґРµСЂР¶РєР° Javascript Рё Cookies.
     <div>
-      Чтобы использовать все возможности сайта, загрузите и установите один из этих браузеров:<br>
+      Р§С‚РѕР±С‹ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ РІСЃРµ РІРѕР·РјРѕР¶РЅРѕСЃС‚Рё СЃР°Р№С‚Р°, Р·Р°РіСЂСѓР·РёС‚Рµ Рё СѓСЃС‚Р°РЅРѕРІРёС‚Рµ РѕРґРёРЅ РёР· СЌС‚РёС… Р±СЂР°СѓР·РµСЂРѕРІ:<br>
       <div id="browsers"><a href="http://www.opera.com/" target="_blank" style="background: url(/templates/Default/images/opera.gif) no-repeat 50% 7px;">Opera</a><a href="http://www.apple.com/safari/" target="_blank" style="background: url(/templates/Default/images/safari.gif) no-repeat 50% 0px;">Safari</a><a href="http://www.google.com/chrome/" target="_blank" style="background: url(/templates/Default/images/chrome.gif) no-repeat 50% 6px;">Google Chrome</a><a href="http://www.mozilla-europe.org/" target="_blank" style="background: url(/templates/Default/images/firefox.gif) no-repeat 50% 7px;">Mozilla Firefox</a></div>
     </div>
   </div>
