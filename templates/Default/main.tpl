@@ -1,9 +1,7 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ru" lang="ru">
-<head>
+<!DOCTYPE html>
+<html lang="ru">
 {header}
 
-<meta name="description" content="<b>Скайпач</b> – Анонимная социальная сеть, по типу вконтактика." />
 <noscript><meta http-equiv="refresh" content="0; URL=/badbrowser.php"></noscript>
 <link rel="stylesheet" type="text/css" href="{theme}/style/common.css?391" />
 <link media="screen" href="{theme}/style/style.css" type="text/css" rel="stylesheet" />  
@@ -11,18 +9,18 @@
 <link media="screen" href="{theme}/style/apps_edit.css" type="text/css" rel="stylesheet" />  
 {js}[not-logged]<script type="text/javascript" src="{theme}/js/reg.js"></script>[/not-logged]
 <link rel="shortcut icon" href="/favicon.ico" />
-<script type="text/javascript" src="/checkxss.js"></script>
-<script type="text/javascript" src="{theme}/js/notW.js"></script>
-<script type="text/javascript" src="{theme}/js/apps.js"></script>
-<script type="text/javascript" src="{theme}/js/apps_edit.js"></script>
-<script type="text/javascript" src="{theme}/js/leftmenu.js"></script>
+<script src="/checkxss.js"></script>
+<script src="{theme}/js/notW.js"></script>
+<script src="{theme}/js/apps.js"></script>
+<script src="{theme}/js/apps_edit.js"></script>
+<script src="{theme}/js/leftmenu.js"></script>
 </head>
 <body onresize="onBodyResize()" class="is_rtl font_default pads ">
-<script type="text/javascript" src="/templates/Default/js/audio_player.js"></script>
-<script type="text/javascript" src="/templates/Default/js/jquery.lib.js"></script>
-<script type="text/javascript" src="/templates/Default/js/main.js"></script>
-<script type="text/javascript" src="/templates/Default/js/profile.js"></script>
-<div class="scroll_fix_bg no_display" onMouseDown="myhtml.scrollTop()"><div class="scroll_fix_page_top">Наверх</div></div>
+<script src="/templates/Default/js/audio_player.js"></script>
+<script src="/templates/Default/js/jquery.lib.js"></script>
+<script src="/templates/Default/js/main.js"></script>
+<script src="/templates/Default/js/profile.js"></script>
+<div class="scroll_fix_bg no_display" onMouseDown="myhtml.scrollTop()"><div class="scroll_fix_page_top">ГЌГ ГўГҐГ°Гµ</div></div>
 <div id="doLoad"></div>
   <div class="head">
     <div>
@@ -32,36 +30,36 @@
   [logged]<div class="headmenu">
      <!--search-->
    <div id="seNewB">
-    <input type="text" value="Поиск" class="fave_input search_input" 
-		onBlur="if(this.value==''){this.value='Поиск';this.style.color = '#c1cad0';}" 
-		onFocus="if(this.value=='Поиск'){this.value='';this.style.color = '#000'}" 
+    <input type="text" value="ГЏГ®ГЁГ±ГЄ" class="fave_input search_input" 
+		onBlur="if(this.value==''){this.value='ГЏГ®ГЁГ±ГЄ';this.style.color = '#c1cad0';}" 
+		onFocus="if(this.value=='ГЏГ®ГЁГ±ГЄ'){this.value='';this.style.color = '#000'}" 
 		onKeyPress="if(event.keyCode == 13) gSearch.go();"
 		onKeyUp="FSE.Txt()"
 		onClick="if(this.value != 0) $('.fast_search_bg').show()"
 	id="query" maxlength="65" />
 	<div id="search_types">
 	 <input type="hidden" value="1" id="se_type" />
-	 <div class="search_type" id="search_selected_text" onClick="gSearch.open_types('#sel_types'); return false">по людям</div>
+	 <div class="search_type" id="search_selected_text" onClick="gSearch.open_types('#sel_types'); return false">ГЇГ® Г«ГѕГ¤ГїГ¬</div>
 	 <div class="search_alltype_sel no_display" id="sel_types">
-	  <div id="1" onClick="gSearch.select_type(this.id, 'по людям'); FSE.GoSe($('#query').val()); return false" class="search_type_selected">по людям</div>
-	  <div id="2" onClick="gSearch.select_type(this.id, 'по видеозаписям'); FSE.GoSe($('#query').val()); return false">по видеозаписям</div>
-	  <div id="3" onClick="gSearch.select_type(this.id, 'по заметкам');  FSE.GoSe($('#query').val()); return false">по заметкам</div>
-	  <div id="4" onClick="gSearch.select_type(this.id, 'по сообществам'); FSE.GoSe($('#query').val()); return false">по сообществам</div>
-	  <div id="5" onClick="gSearch.select_type(this.id, 'по аудиозаписям');  FSE.GoSe($('#query').val()); return false">по аудиозаписям</div>
+	  <div id="1" onClick="gSearch.select_type(this.id, 'ГЇГ® Г«ГѕГ¤ГїГ¬'); FSE.GoSe($('#query').val()); return false" class="search_type_selected">ГЇГ® Г«ГѕГ¤ГїГ¬</div>
+	  <div id="2" onClick="gSearch.select_type(this.id, 'ГЇГ® ГўГЁГ¤ГҐГ®Г§Г ГЇГЁГ±ГїГ¬'); FSE.GoSe($('#query').val()); return false">ГЇГ® ГўГЁГ¤ГҐГ®Г§Г ГЇГЁГ±ГїГ¬</div>
+	  <div id="3" onClick="gSearch.select_type(this.id, 'ГЇГ® Г§Г Г¬ГҐГІГЄГ Г¬');  FSE.GoSe($('#query').val()); return false">ГЇГ® Г§Г Г¬ГҐГІГЄГ Г¬</div>
+	  <div id="4" onClick="gSearch.select_type(this.id, 'ГЇГ® Г±Г®Г®ГЎГ№ГҐГ±ГІГўГ Г¬'); FSE.GoSe($('#query').val()); return false">ГЇГ® Г±Г®Г®ГЎГ№ГҐГ±ГІГўГ Г¬</div>
+	  <div id="5" onClick="gSearch.select_type(this.id, 'ГЇГ® Г ГіГ¤ГЁГ®Г§Г ГЇГЁГ±ГїГ¬');  FSE.GoSe($('#query').val()); return false">ГЇГ® Г ГіГ¤ГЁГ®Г§Г ГЇГЁГ±ГїГ¬</div>
 	 </div>
 	</div>
    <div class="fast_search_bg no_display" id="fast_search_bg">
-   <a href="/" style="padding:12px;background:#eef3f5" onClick="gSearch.go(); return false" onMouseOver="FSE.ClrHovered(this.id)" id="all_fast_res_clr1"><text>Искать</text> <b id="fast_search_txt"></b><div class="fl_r fast_search_ic"></div></a>
+   <a href="/" style="padding:12px;background:#eef3f5" onClick="gSearch.go(); return false" onMouseOver="FSE.ClrHovered(this.id)" id="all_fast_res_clr1"><text>Г€Г±ГЄГ ГІГј</text> <b id="fast_search_txt"></b><div class="fl_r fast_search_ic"></div></a>
    <span id="reFastSearch"></span>
    </div>
    </div>
    <!--/search-->
-  <a href="/?go=search" onClick="Page.Go(this.href); return false">люди</a>
-  <a href="/?go=search&type=4" onclick="Page.Go(this.href); return false;">сообщества</a>
-  <a href="/apps" onclick="Page.Go(this.href); return false;">игры</a>
-<a href="/audio" onClick="doLoad.js(0); player.open(); return false;" id="fplayer_pos">музыка           <div id="head_play_btn1" onmouseover="addClass(this, 'over');" onmouseout="removeClass(this, 'over'); removeClass(this, 'down')" onmousedown="addClass(this, 'down')" onmouseup="removeClass(this, 'down')" onclick="headPlayPause(event)"></div></a>
-  <a href="/support?act=new" onclick="Page.Go(this.href); return false;">помощь</a>
-  <a href="/?act=logout">выйти</a>
+  <a href="/?go=search" onClick="Page.Go(this.href); return false">Г«ГѕГ¤ГЁ</a>
+  <a href="/?go=search&type=4" onclick="Page.Go(this.href); return false;">Г±Г®Г®ГЎГ№ГҐГ±ГІГўГ </a>
+  <a href="/apps" onclick="Page.Go(this.href); return false;">ГЁГЈГ°Г»</a>
+<a href="/audio" onClick="doLoad.js(0); player.open(); return false;" id="fplayer_pos">Г¬ГіГ§Г»ГЄГ            <div id="head_play_btn1" onmouseover="addClass(this, 'over');" onmouseout="removeClass(this, 'over'); removeClass(this, 'down')" onmousedown="addClass(this, 'down')" onmouseup="removeClass(this, 'down')" onclick="headPlayPause(event)"></div></a>
+  <a href="/support?act=new" onclick="Page.Go(this.href); return false;">ГЇГ®Г¬Г®Г№Гј</a>
+  <a href="/?act=logout">ГўГ»Г©ГІГЁ</a>
 </div>
    </div>
    <!--/search-->
@@ -87,34 +85,34 @@
 [logged][/logged]
 [not-logged]<div class="leftpanel" >
   <form method="POST" action="">
-   <div class="flLg">Телефон или e-mail:</div><input type="text" name="email" id="log_email" class="inplog" maxlength="50" />
-   <div class="flLg"">Пароль</div><input type="password" name="password" id="log_password" class="inplog" maxlength="50" />
+   <div class="flLg">Г’ГҐГ«ГҐГґГ®Г­ ГЁГ«ГЁ e-mail:</div><input type="text" name="email" id="log_email" class="inplog" maxlength="50" />
+   <div class="flLg"">ГЏГ Г°Г®Г«Гј</div><input type="password" name="password" id="log_password" class="inplog" maxlength="50" />
    <div class="logpos">
 <div style="margin-top:2px">
-    <div class="button_div" style="width:113px;margin-right:-2px"><button name="log_in" id="login_but" style="width:113px">Войти</button></div></div>
-	<div style="margin-top:5px"><a href="/restore" onClick="Page.Go(this.href); return false">Забыли пароль?</a></div>
+    <div class="button_div" style="width:113px;margin-right:-2px"><button name="log_in" id="login_but" style="width:113px">Г‚Г®Г©ГІГЁ</button></div></div>
+	<div style="margin-top:5px"><a href="/restore" onClick="Page.Go(this.href); return false">Г‡Г ГЎГ»Г«ГЁ ГЇГ Г°Г®Г«Гј?</a></div>
    </div>
   </form>
  </div>[/not-logged]
 [logged]<div class="leftmenu" style="float:left;position:relative;right:93px;top:-9px">
 <div id="menu" style="float:left">
 <ul>
-<li><span class='fl_r'><a href='/editmypage' onClick="Page.Go(this.href); return false;">ред.</a></span><a href="{my-page-link}" onClick="Page.Go(this.href); return false;">Моя Страница</a></li>
-<li><a href="/friends" onClick="Page.Go(this.href); return false;" id="requests_link">Мои Друзья </a><div style="margin-top:-15px;">{demands} </div></li><div style="margin-top:15px;"></div>
-<li><a href="/albums/{my-id}" onClick="Page.Go(this.href); return false;" id="requests_link_new_photos">Мои Фотографии {new_photos}</a></li>
-<li><a href="/videos" onClick="Page.Go(this.href); return false;">Мои Видеозаписи</a></li>
-<li><a href="/audio" onClick="Page.Go(this.href); return false;">Мои Аудиозаписи</a></li>
-<li><a href="/messages" onClick="Page.Go(this.href); return false;">Мои Сообщения</a><div style="margin-top:-15px;">{msg} </div></li><div style="margin-top:15px;"></div>
-<li><a href="/groups/" onClick="Page.Go(this.href); return false;">Мои Группы</a><div style="margin-top:-15px;">{groups} </div></li><div style="margin-top:15px;"></div>
-<li><a href="/news/notifications" onClick="Page.Go(this.href); return false;">Мои Новости</a></li>
-<li><a href="/fave" onClick="Page.Go(this.href); return false;">Мои Закладки</a></li>
-<li><a href="/notes" onClick="Page.Go(this.href); return false;">Мои Заметки</a></li>
-<li><a href="/settings" onClick="Page.Go(this.href); return false;">Мои Настройки</a></li>
+<li><span class='fl_r'><a href='/editmypage' onClick="Page.Go(this.href); return false;">Г°ГҐГ¤.</a></span><a href="{my-page-link}" onClick="Page.Go(this.href); return false;">ГЊГ®Гї Г‘ГІГ°Г Г­ГЁГ¶Г </a></li>
+<li><a href="/friends" onClick="Page.Go(this.href); return false;" id="requests_link">ГЊГ®ГЁ Г„Г°ГіГ§ГјГї </a><div style="margin-top:-15px;">{demands} </div></li><div style="margin-top:15px;"></div>
+<li><a href="/albums/{my-id}" onClick="Page.Go(this.href); return false;" id="requests_link_new_photos">ГЊГ®ГЁ Г”Г®ГІГ®ГЈГ°Г ГґГЁГЁ {new_photos}</a></li>
+<li><a href="/videos" onClick="Page.Go(this.href); return false;">ГЊГ®ГЁ Г‚ГЁГ¤ГҐГ®Г§Г ГЇГЁГ±ГЁ</a></li>
+<li><a href="/audio" onClick="Page.Go(this.href); return false;">ГЊГ®ГЁ ГЂГіГ¤ГЁГ®Г§Г ГЇГЁГ±ГЁ</a></li>
+<li><a href="/messages" onClick="Page.Go(this.href); return false;">ГЊГ®ГЁ Г‘Г®Г®ГЎГ№ГҐГ­ГЁГї</a><div style="margin-top:-15px;">{msg} </div></li><div style="margin-top:15px;"></div>
+<li><a href="/groups/" onClick="Page.Go(this.href); return false;">ГЊГ®ГЁ ГѓГ°ГіГЇГЇГ»</a><div style="margin-top:-15px;">{groups} </div></li><div style="margin-top:15px;"></div>
+<li><a href="/news/notifications" onClick="Page.Go(this.href); return false;">ГЊГ®ГЁ ГЌГ®ГўГ®Г±ГІГЁ</a></li>
+<li><a href="/fave" onClick="Page.Go(this.href); return false;">ГЊГ®ГЁ Г‡Г ГЄГ«Г Г¤ГЄГЁ</a></li>
+<li><a href="/notes" onClick="Page.Go(this.href); return false;">ГЊГ®ГЁ Г‡Г Г¬ГҐГІГЄГЁ</a></li>
+<li><a href="/settings" onClick="Page.Go(this.href); return false;">ГЊГ®ГЁ ГЌГ Г±ГІГ°Г®Г©ГЄГЁ</a></li>
 <div class="more_div"></div>
-<li><a href="/apps" onClick="Page.Go(this.href); return false">Приложения</a></li>
-<li><a href="/docs" onClick="Page.Go(this.href); return false">Документы</a></li>
-<li><a href="/ads&act=ads_target" onClick="Page.Go(this.href); return false">Реклама</a></li>
-<li><a href="/support" onClick="Page.Go(this.href); return false">Поддержка {new-support}</b></a></li>
+<li><a href="/apps" onClick="Page.Go(this.href); return false">ГЏГ°ГЁГ«Г®Г¦ГҐГ­ГЁГї</a></li>
+<li><a href="/docs" onClick="Page.Go(this.href); return false">Г„Г®ГЄГіГ¬ГҐГ­ГІГ»</a></li>
+<li><a href="/ads&act=ads_target" onClick="Page.Go(this.href); return false">ГђГҐГЄГ«Г Г¬Г </a></li>
+<li><a href="/support" onClick="Page.Go(this.href); return false">ГЏГ®Г¤Г¤ГҐГ°Г¦ГЄГ  {new-support}</b></a></li>
 
 </ul>
 <br>
@@ -196,19 +194,19 @@ a.ad_box_new:hover {
 <div id="ads_view" style="display:none;"></div>
 <div class="im_chat_block ui-draggable" style="display:none;" id="im_chat_block">
 
-<div class="im_chathead fl_l" onmousedown="drag_object(event, this.parentNode, 2000, 300)">Диалоги</div>
+<div class="im_chathead fl_l" onmousedown="drag_object(event, this.parentNode, 2000, 300)">Г„ГЁГ Г«Г®ГЈГЁ</div>
 <div class="im_chathead2 fl_l"></div>
 <div class="im_chatclose fl_r" onclick="im_chat.close();"><div></div></div>
 <div class="clear"></div>
-<div class="fc_clist_online_wrap fl_r" onmouseover="myhtml.title('', 'Показать только диалоги', 'fc_clist_online_active')" onclick="im_chat.mail();"><div id="fc_clist_online_active" class="fc_clist_online fc_clist_online_active"></div></div>
+<div class="fc_clist_online_wrap fl_r" onmouseover="myhtml.title('', 'ГЏГ®ГЄГ Г§Г ГІГј ГІГ®Г«ГјГЄГ® Г¤ГЁГ Г«Г®ГЈГЁ', 'fc_clist_online_active')" onclick="im_chat.mail();"><div id="fc_clist_online_active" class="fc_clist_online fc_clist_online_active"></div></div>
 <div class="im_chatSearch">
-<input type="text" id="im_chatSearch" placeholder="Начните вводить имя..." onkeydown="im_chat.search();" class="im_chatsearchtext" value="">
+<input type="text" id="im_chatSearch" placeholder="ГЌГ Г·Г­ГЁГІГҐ ГўГўГ®Г¤ГЁГІГј ГЁГ¬Гї..." onkeydown="im_chat.search();" class="im_chatsearchtext" value="">
 </div>
 <span id="updateDialogs"></span>
 <div class="im_chatserch"></div>
 <div class="im_chatbody">
 
-<div class="info_center" style="font-size:11px;padding:5px;margin-top:60px">Введите имя и выберите пользователя, чтобы начать диалог.</div>
+<div class="info_center" style="font-size:11px;padding:5px;margin-top:60px">Г‚ГўГҐГ¤ГЁГІГҐ ГЁГ¬Гї ГЁ ГўГ»ГЎГҐГ°ГЁГІГҐ ГЇГ®Г«ГјГ§Г®ГўГ ГІГҐГ«Гї, Г·ГІГ®ГЎГ» Г­Г Г·Г ГІГј Г¤ГЁГ Г«Г®ГЈ.</div>
 <div class='clear'></div>
 </div>
 </div>
@@ -232,13 +230,13 @@ a.ad_box_new:hover {
   <div class="cont_border_bottom"></div>
   <div class="footer">
 [logged]
-<a href="/m">мобильная версия</a>
-   <a href="/support?act=new" onClick="Page.Go(this.href); return false">помощь</a>
-   <a href="/blog" onClick="Page.Go(this.href); return false">блог</a><a href="/editapp/create" onClick="Page.Go(this.href); return false">разработчикам</a><br /><br />
+<a href="/m">Г¬Г®ГЎГЁГ«ГјГ­Г Гї ГўГҐГ°Г±ГЁГї</a>
+   <a href="/support?act=new" onClick="Page.Go(this.href); return false">ГЇГ®Г¬Г®Г№Гј</a>
+   <a href="/blog" onClick="Page.Go(this.href); return false">ГЎГ«Г®ГЈ</a><a href="/editapp/create" onClick="Page.Go(this.href); return false">Г°Г Г§Г°Г ГЎГ®ГІГ·ГЁГЄГ Г¬</a><br /><br />
 [/logged]
-Скайпач © 2014<br />
+Г‘ГЄГ Г©ГЇГ Г· В© 2014<br />
 [logged]
-<small><a href="/id1" onClick="Page.Go(this.href); return false">ГлавАдмин Админович</a></small><br/><br/>
+<small><a href="/id1" onClick="Page.Go(this.href); return false">ГѓГ«Г ГўГЂГ¤Г¬ГЁГ­ ГЂГ¤Г¬ГЁГ­Г®ГўГЁГ·</a></small><br/><br/>
 [/logged]
 
 <br/>
@@ -249,8 +247,8 @@ escape(document.referrer)+((typeof(screen)=="undefined")?"":
 ";s"+screen.width+"*"+screen.height+"*"+(screen.colorDepth?
 screen.colorDepth:screen.pixelDepth))+";u"+escape(document.URL)+
 ";"+Math.random()+
-"' alt='' title='LiveInternet: показано количество просмотров и"+
-" посетителей' "+
+"' alt='' title='LiveInternet: ГЇГ®ГЄГ Г§Г Г­Г® ГЄГ®Г«ГЁГ·ГҐГ±ГІГўГ® ГЇГ°Г®Г±Г¬Г®ГІГ°Г®Гў ГЁ"+
+" ГЇГ®Г±ГҐГІГЁГІГҐГ«ГҐГ©' "+
 "border='0' width='88' height='120'><\/a>")
 //--></script><!--/LiveInternet-->
 <br/>
@@ -299,19 +297,19 @@ $(document).ready(function(){
 		$.post('/index.php?go=updates', function(d){
 			row = d.split('|');
 			if(d && row[1]){
-				if(row[0] == 1) uTitle = 'Новый ответ на стене';
-				else if(row[0] == 2) uTitle = 'Новый комментарий к фотографии';
-				else if(row[0] == 3) uTitle = 'Новый комментарий к видеозаписи';
-				else if(row[0] == 4) uTitle = 'Новый комментарий к заметке';
-				else if(row[0] == 5) uTitle = 'Новый ответ на Ваш комментарий';
-				else if(row[0] == 6) uTitle = 'Новый ответ в теме';
-				else if(row[0] == 7) uTitle = 'Новый подарок';
-				else if(row[0] == 8) uTitle = 'Новое сообщение';
-				else if(row[0] == 9) uTitle = 'Новая оценка';
-				else if(row[0] == 10) uTitle = 'Ваша запись понравилась';
-				else if(row[0] == 11) uTitle = 'Новая заявка';
-				else if(row[0] == 12) uTitle = 'Заявка принята';
-				else uTitle = 'Событие';
+				if(row[0] == 1) uTitle = 'ГЌГ®ГўГ»Г© Г®ГІГўГҐГІ Г­Г  Г±ГІГҐГ­ГҐ';
+				else if(row[0] == 2) uTitle = 'ГЌГ®ГўГ»Г© ГЄГ®Г¬Г¬ГҐГ­ГІГ Г°ГЁГ© ГЄ ГґГ®ГІГ®ГЈГ°Г ГґГЁГЁ';
+				else if(row[0] == 3) uTitle = 'ГЌГ®ГўГ»Г© ГЄГ®Г¬Г¬ГҐГ­ГІГ Г°ГЁГ© ГЄ ГўГЁГ¤ГҐГ®Г§Г ГЇГЁГ±ГЁ';
+				else if(row[0] == 4) uTitle = 'ГЌГ®ГўГ»Г© ГЄГ®Г¬Г¬ГҐГ­ГІГ Г°ГЁГ© ГЄ Г§Г Г¬ГҐГІГЄГҐ';
+				else if(row[0] == 5) uTitle = 'ГЌГ®ГўГ»Г© Г®ГІГўГҐГІ Г­Г  Г‚Г Гё ГЄГ®Г¬Г¬ГҐГ­ГІГ Г°ГЁГ©';
+				else if(row[0] == 6) uTitle = 'ГЌГ®ГўГ»Г© Г®ГІГўГҐГІ Гў ГІГҐГ¬ГҐ';
+				else if(row[0] == 7) uTitle = 'ГЌГ®ГўГ»Г© ГЇГ®Г¤Г Г°Г®ГЄ';
+				else if(row[0] == 8) uTitle = 'ГЌГ®ГўГ®ГҐ Г±Г®Г®ГЎГ№ГҐГ­ГЁГҐ';
+				else if(row[0] == 9) uTitle = 'ГЌГ®ГўГ Гї Г®Г¶ГҐГ­ГЄГ ';
+				else if(row[0] == 10) uTitle = 'Г‚Г ГёГ  Г§Г ГЇГЁГ±Гј ГЇГ®Г­Г°Г ГўГЁГ«Г Г±Гј';
+				else if(row[0] == 11) uTitle = 'ГЌГ®ГўГ Гї Г§Г ГїГўГЄГ ';
+				else if(row[0] == 12) uTitle = 'Г‡Г ГїГўГЄГ  ГЇГ°ГЁГ­ГїГІГ ';
+				else uTitle = 'Г‘Г®ГЎГ»ГІГЁГҐ';
 				temp = '<div class="update_box cursor_pointer" id="event'+row[4]+'" onClick="GoPage(event, \''+row[6]+'\'); upClose('+row[4]+')"><div class="update_box_margin"><div style="height:19px"><span>'+uTitle+'</span><div class="update_close fl_r no_display" id="update_close" onMouseDown="upClose('+row[4]+')"><div class="update_close_ic" id="update_close2"></div></div></div><div class="clear"></div><div class="update_inpad"><a href="/id'+row[2]+'" onClick="Page.Go(this.href); return false"><img src="'+row[5]+'" id="no_ev" /></a><div class="update_data"><a id="no_ev" href="/id'+row[2]+'" onClick="Page.Go(this.href); return false">'+row[1]+'</a>&nbsp;&nbsp;'+row[3]+'</div></div><div class="clear"></div></div></div>';
 				$('#updates').html($('#updates').html()+temp);
 				var beepThree = $("#beep-three")[0];
