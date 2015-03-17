@@ -14,7 +14,7 @@
 <link rel="stylesheet" href="./templates/styles.css" title="stylesheet" type="text/css" />  
 
 {* CODE FOR VARIOUS JAVASCRIPT-BASED FEATURES, DO NOT REMOVE *}
-<script type="text/javascript" src="./include/js/mootools12-min.js"></script>
+<script src="./include/js/mootools12-min.js"></script>
 {*
 <script src="./include/js/mootools12.js"></script>
 <script src="./include/js/mootools12-more.js"></script>
