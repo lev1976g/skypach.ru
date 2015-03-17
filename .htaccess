@@ -1,3 +1,10 @@
+<FilesMatch "\.(htaccess|htpasswd|ini|log|sh|inc|bak|tpl)$">
+Order Allow,Deny
+Deny from all
+</FilesMatch>
+
+php_flag display_errors off
+
 AddDefaultCharset windows-1251
 
 php_value upload_max_filesize 100M
@@ -29,7 +36,7 @@ Options +FollowSymLinks
 	RewriteRule ^loto(/?)+$ index.php?go=loto [L]	
 
 
-# Ðàçðàáîò÷èêàì
+# developers
     RewriteRule ^developers(/?)+$ index.php?go=developers [L]
 	RewriteRule ^dev/met(/?)+$ index.php?go=met [L]
 	RewriteRule ^dev/native(/?)+$ index.php?go=native [L]
