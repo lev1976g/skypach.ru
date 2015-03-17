@@ -16,23 +16,23 @@
 {* CODE FOR VARIOUS JAVASCRIPT-BASED FEATURES, DO NOT REMOVE *}
 <script type="text/javascript" src="./include/js/mootools12-min.js"></script>
 {*
-<script type="text/javascript" src="./include/js/mootools12.js"></script>
-<script type="text/javascript" src="./include/js/mootools12-more.js"></script>
+<script src="./include/js/mootools12.js"></script>
+<script src="./include/js/mootools12-more.js"></script>
 *}
 
 <script type="text/javascript" src="./include/js/core-min.js"></script>
 {*
-<script type="text/javascript" src="./include/js/autogrow.js"></script>
-<script type="text/javascript" src="./include/js/smoothbox.js"></script>
-<script type="text/javascript" src="./include/js/autosuggest.js"></script>
-<script type="text/javascript" src="./include/js/sprintf.js"></script>
-<script type="text/javascript" src="./include/js/class_base.js"></script>
-<script type="text/javascript" src="./include/js/class_core.js"></script>
-<script type="text/javascript" src="./include/js/class_language.js"></script>
-<script type="text/javascript" src="./include/js/class_url.js"></script>
-<script type="text/javascript" src="./include/js/class_comments.js"></script>
-<script type="text/javascript" src="./include/js/class_tags.js"></script>
-<script type="text/javascript" src="./include/js/class_user.js"></script>
+<script src="./include/js/autogrow.js"></script>
+<script src="./include/js/smoothbox.js"></script>
+<script src="./include/js/autosuggest.js"></script>
+<script src="./include/js/sprintf.js"></script>
+<script src="./include/js/class_base.js"></script>
+<script src="./include/js/class_core.js"></script>
+<script src="./include/js/class_language.js"></script>
+<script src="./include/js/class_url.js"></script>
+<script src="./include/js/class_comments.js"></script>
+<script src="./include/js/class_tags.js"></script>
+<script src="./include/js/class_user.js"></script>
 *}
 {* INSTALIZE API *}
 <script type="text/javascript">
